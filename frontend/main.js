@@ -1,6 +1,6 @@
 gsap.registerPlugin(ScrollTrigger);
 
-// ۱. ساخت دینامیک بیش از ۱۵۰ ستاره پرتراکم در سراسر پس‌زمینه
+// ۱. ساخت دینامیک ستاره‌های پرتراکم پس‌زمینه
 const starsContainer = document.getElementById('dynamic-stars');
 const starCount = 180;
 
@@ -9,14 +9,9 @@ if (starsContainer) {
         const star = document.createElement('div');
         star.classList.add('star-dot');
         
-        // موقعیت تصادفی
         const x = Math.random() * 100;
         const y = Math.random() * 100;
-        
-        // سایز تصادفی
         const size = Math.random() * 2.5 + 1;
-        
-        // زمان‌بندی چشمک زدن تصادفی
         const duration = Math.random() * 3 + 1.5;
         const delay = Math.random() * 3;
 
@@ -31,14 +26,14 @@ if (starsContainer) {
     }
 }
 
-// ۲. کلید تغییر تم
+// ۲. سوئیچ تم تاریک و روشن
 const themeToggle = document.getElementById('themeToggle');
 themeToggle.addEventListener('click', () => {
     document.body.classList.toggle('light-theme');
     themeToggle.textContent = document.body.classList.contains('light-theme') ? '☀️' : '🌙';
 });
 
-// ۳. تولید ذرات نوری لوگو
+// ۳. تولید ذرات پودری نوری لوگو
 const dustGroup = document.getElementById('dust-group');
 const colors = ['#00e5ff', '#3b82f6', '#ffffff', '#6366f1'];
 
@@ -60,8 +55,20 @@ for (let i = 0; i < 90; i++) {
     dustGroup.appendChild(circle);
 }
 
-// ۴. انیمیشن اسکرول
+// ۴. انیمیشن زوم و اسکرول GSAP + هایلایت هوشمند منوی هدر
 const panels = gsap.utils.toArray('.panel');
+const navLinks = document.querySelectorAll('.nav-menu a');
+
+function updateActiveNav(activeIndex) {
+    navLinks.forEach(link => {
+        const linkIndex = parseInt(link.getAttribute('data-index'));
+        if (linkIndex === activeIndex) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+}
 
 panels.forEach((panel, i) => {
     gsap.set(panel, {
@@ -77,6 +84,10 @@ const tl = gsap.timeline({
         end: `+=${panels.length * 100}%`,
         pin: true,
         scrub: 1,
+        onUpdate: (self) => {
+            const activeIndex = Math.round(self.progress * (panels.length - 1));
+            updateActiveNav(activeIndex);
+        }
     }
 });
 
@@ -92,8 +103,43 @@ panels.forEach((panel, i) => {
     }
 });
 
+// ۵. جامپ سریع با کلیک روی هر گزینه منو
 function jumpToPanel(index) {
     const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
     const targetScroll = (index / (panels.length - 1)) * totalScroll;
     window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+}
+
+// ۶. جستجوی زنده در کارت‌های بازی
+function filterGames() {
+    const searchInput = document.getElementById('gameSearch').value.toLowerCase();
+    const cards = document.querySelectorAll('.cyber-game-card');
+
+    cards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        const genre = card.querySelector('.genre').textContent.toLowerCase();
+
+        if (title.includes(searchInput) || genre.includes(searchInput)) {
+            card.style.display = 'flex';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+// ۷. فیلتر دسته‌بندی بازی‌ها
+function filterCategory(category, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const cards = document.querySelectorAll('.cyber-game-card');
+
+    cards.forEach(card => {
+        const categories = card.getAttribute('data-category');
+        if (category === 'all' || categories.includes(category)) {
+            card.style.display = 'flex';
+        } else {
+            card.style.display = 'none';
+        }
+    });
 }

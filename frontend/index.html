@@ -8,13 +8,12 @@
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<div class="space-nebula"></div>
-<div id="dynamic-stars"></div>
+
     <!-- لایه‌های پس‌زمینه فضایی -->
     <div class="space-nebula"></div>
-    <div class="stars-layer"></div>
+    <div id="dynamic-stars"></div>
 
-    <!-- هدر ثابت بالا به همراه منوی دسترسی سریع -->
+    <!-- هدر ثابت بالا -->
     <header class="site-header">
         <!-- بالا سمت راست: لوگو و نام برند -->
         <div class="header-right">
@@ -27,16 +26,17 @@
             <span class="logo-title">GAMING DNS</span>
         </div>
 
-        <!-- منوی وسط (دسترسی سریع) -->
+        <!-- منوی وسط (دسترسی سریع با قابلیت روشن شدن هنگام زوم) -->
         <nav class="nav-menu">
-            <a href="#games" onclick="jumpToPanel(2)">بازی‌ها</a>
-            <a href="#pricing" onclick="jumpToPanel(3)">تعرفه‌ها</a>
-            <a href="#download" onclick="jumpToPanel(4)">دانلود برنامه</a>
-            <a href="#about" onclick="jumpToPanel(5)">درباره ما</a>
-            <a href="#support" onclick="jumpToPanel(6)">پشتیبانی</a>
+            <a href="#features" onclick="jumpToPanel(1)" data-index="1">ویژگی‌ها</a>
+            <a href="#games" onclick="jumpToPanel(2)" data-index="2">بازی‌ها</a>
+            <a href="#pricing" onclick="jumpToPanel(3)" data-index="3">تعرفه‌ها</a>
+            <a href="#download" onclick="jumpToPanel(4)" data-index="4">دانلود برنامه</a>
+            <a href="#about" onclick="jumpToPanel(5)" data-index="5">درباره ما</a>
+            <a href="#support" onclick="jumpToPanel(6)" data-index="6">پشتیبانی</a>
         </nav>
 
-        <!-- بالا سمت چپ: ورود و تغییر تم -->
+        <!-- بالا سمت چپ: تغییر تم و ورود/ثبت‌نام -->
         <div class="header-left">
             <button class="theme-toggle-btn" id="themeToggle" title="تغییر تم">🌙</button>
             <button class="auth-btn">ورود / ثبت‌نام</button>
@@ -46,7 +46,7 @@
     <div class="scroll-container">
         <div class="zoom-wrapper">
             
-            <!-- Panel 0: لوگوی اصلی صاعقه -->
+            <!-- Panel 0: لوگوی اصلی صاعقه و هسته انرژی -->
             <section class="panel hero-section">
                 <div class="logo-box">
                     <svg class="dns-logo-svg" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -95,20 +95,129 @@
                 </div>
             </section>
 
-            <!-- Panel 2: بازی‌های پوشش داده شده -->
+            <!-- Panel 2: بازی‌های پشتیبانی‌شده (سایبرپانکی) -->
             <section class="panel games-section">
                 <div class="content">
                     <h2>بازی‌های پشتیبانی‌شده</h2>
-                    <p>پشتیبانی کامل و پینگ بهینه شده برای تمام بازی‌های تحریم شده و رقابتی</p>
-                    <div class="grid games-grid">
-                        <div class="game-card">🎮 Warzone 2.0 / MW3</div>
-                        <div class="game-card">⚽ EA FC 24 / FIFA</div>
-                        <div class="game-card">🔫 Valorant</div>
-                        <div class="game-card">📱 PUBG Mobile</div>
-                        <div class="game-card">🛡️ Apex Legends</div>
-                        <div class="game-card">⚔️ League of Legends</div>
-                        <div class="game-card">💥 Rainbow Six Siege</div>
-                        <div class="game-card">🚗 Rocket League</div>
+                    <p>پشتیبانی کامل و پینگ بهینه شده برای تمام بازی‌های تحریم‌شده و رقابتی</p>
+
+                    <div class="games-header">
+                        <div class="search-box">
+                            <input type="text" id="gameSearch" placeholder="جستجوی بازی (مثلاً Warzone, FC 24)..." onkeyup="filterGames()">
+                        </div>
+                        <div class="game-filters">
+                            <button class="filter-btn active" onclick="filterCategory('all', this)">همه</button>
+                            <button class="filter-btn" onclick="filterCategory('fps', this)">شوتر / FPS</button>
+                            <button class="filter-btn" onclick="filterCategory('sports', this)">ورزشی</button>
+                            <button class="filter-btn" onclick="filterCategory('battle', this)">بتل رویال</button>
+                            <button class="filter-btn" onclick="filterCategory('moba', this)">MOBA</button>
+                        </div>
+                    </div>
+
+                    <div class="games-container" id="gamesContainer">
+                        <div class="cyber-game-card" data-category="fps battle">
+                            <div class="card-glow"></div>
+                            <div class="game-icon">🎯</div>
+                            <div class="game-info">
+                                <h3>COD: Warzone 2.0</h3>
+                                <span class="genre">Shooter / Battle Royale</span>
+                            </div>
+                            <div class="ping-badge">
+                                <span class="ping-dot"></span>
+                                <span class="ping-val">32 ms</span>
+                            </div>
+                        </div>
+
+                        <div class="cyber-game-card" data-category="sports">
+                            <div class="card-glow"></div>
+                            <div class="game-icon">⚽</div>
+                            <div class="game-info">
+                                <h3>EA FC 24 / FIFA</h3>
+                                <span class="genre">Sports / Simulator</span>
+                            </div>
+                            <div class="ping-badge">
+                                <span class="ping-dot"></span>
+                                <span class="ping-val">28 ms</span>
+                            </div>
+                        </div>
+
+                        <div class="cyber-game-card" data-category="fps">
+                            <div class="card-glow"></div>
+                            <div class="game-icon">🔫</div>
+                            <div class="game-info">
+                                <h3>Valorant</h3>
+                                <span class="genre">Tactical Shooter</span>
+                            </div>
+                            <div class="ping-badge">
+                                <span class="ping-dot"></span>
+                                <span class="ping-val">35 ms</span>
+                            </div>
+                        </div>
+
+                        <div class="cyber-game-card" data-category="battle fps">
+                            <div class="card-glow"></div>
+                            <div class="game-icon">📱</div>
+                            <div class="game-info">
+                                <h3>PUBG Mobile</h3>
+                                <span class="genre">Mobile Battle Royale</span>
+                            </div>
+                            <div class="ping-badge">
+                                <span class="ping-dot"></span>
+                                <span class="ping-val">40 ms</span>
+                            </div>
+                        </div>
+
+                        <div class="cyber-game-card" data-category="battle fps">
+                            <div class="card-glow"></div>
+                            <div class="game-icon">🛡️</div>
+                            <div class="game-info">
+                                <h3>Apex Legends</h3>
+                                <span class="genre">Hero Shooter</span>
+                            </div>
+                            <div class="ping-badge">
+                                <span class="ping-dot"></span>
+                                <span class="ping-val">38 ms</span>
+                            </div>
+                        </div>
+
+                        <div class="cyber-game-card" data-category="moba">
+                            <div class="card-glow"></div>
+                            <div class="game-icon">⚔️</div>
+                            <div class="game-info">
+                                <h3>League of Legends</h3>
+                                <span class="genre">MOBA Strategy</span>
+                            </div>
+                            <div class="ping-badge">
+                                <span class="ping-dot"></span>
+                                <span class="ping-val">42 ms</span>
+                            </div>
+                        </div>
+
+                        <div class="cyber-game-card" data-category="fps">
+                            <div class="card-glow"></div>
+                            <div class="game-icon">💥</div>
+                            <div class="game-info">
+                                <h3>Rainbow Six Siege</h3>
+                                <span class="genre">Tactical FPS</span>
+                            </div>
+                            <div class="ping-badge">
+                                <span class="ping-dot"></span>
+                                <span class="ping-val">34 ms</span>
+                            </div>
+                        </div>
+
+                        <div class="cyber-game-card" data-category="sports">
+                            <div class="card-glow"></div>
+                            <div class="game-icon">🚗</div>
+                            <div class="game-info">
+                                <h3>Rocket League</h3>
+                                <span class="genre">Action / Sports</span>
+                            </div>
+                            <div class="ping-badge">
+                                <span class="ping-dot"></span>
+                                <span class="ping-val">29 ms</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -143,7 +252,7 @@
                 </div>
             </section>
 
-            <!-- Panel 4: دانلود نرم‌افزار و انتخاب نسخه -->
+            <!-- Panel 4: دانلود نرم‌افزار -->
             <section class="panel download-section">
                 <div class="content">
                     <h2>دانلود کلاینت اختصاصی DNS</h2>
