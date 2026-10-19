@@ -5,10 +5,100 @@
     font-family: 'Vazirmatn', sans-serif;
 }
 
+/* پس‌زمینه فضای پرستاره (Dark Theme پیش‌فرض) */
 body {
-    background-color: #06070a;
+    background-color: #030408;
+    background-image: 
+        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+        radial-gradient(white, rgba(255,255,255,.1) 1px, transparent 30px),
+        radial-gradient(rgba(0,229,255,0.1), transparent 60px);
+    background-size: 550px 550px, 350px 350px, 250px 250px;
+    background-position: 0 0, 40px 60px, 130px 270px;
     color: #ffffff;
     overflow-x: hidden;
+    transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* حالت تم روشن (Light Mode) */
+body.light-theme {
+    background-color: #f1f5f9;
+    background-image: 
+        radial-gradient(#94a3b8, rgba(148,163,184,.2) 2px, transparent 40px),
+        radial-gradient(#94a3b8, rgba(148,163,184,.1) 1px, transparent 30px);
+    color: #0f172a;
+}
+
+/* هدر ثابت بالا */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    z-index: 1000;
+    pointer-events: none; /* اجازه عبور کلیک از فضای خالی هدر */
+}
+
+.site-header > div {
+    pointer-events: auto; /* فعال کردن کلیک روی دکمه‌ها و لوگو */
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* دکمه ورود / ثبت‌نام */
+.auth-btn {
+    background: rgba(0, 229, 255, 0.1);
+    border: 1px solid #00e5ff;
+    color: #00e5ff;
+    padding: 8px 22px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+}
+
+.auth-btn:hover {
+    background: #00e5ff;
+    color: #030408;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.5);
+}
+
+/* دکمه تغییر تم */
+.theme-toggle-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.3s;
+}
+
+.theme-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+body.light-theme .theme-toggle-btn {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+/* لوگوی کوچک بالا سمت راست */
+.fixed-logo {
+    width: 40px;
+    height: 40px;
+    filter: drop-shadow(0 0 12px rgba(0, 229, 255, 0.6));
 }
 
 .scroll-container {
@@ -78,6 +168,12 @@ h1 {
     -webkit-text-fill-color: transparent;
 }
 
+body.light-theme h1 {
+    background: linear-gradient(135deg, #0f172a 0%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 h2 {
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
@@ -87,6 +183,10 @@ p {
     font-size: 1.2rem;
     color: #94a3b8;
     margin-bottom: 2rem;
+}
+
+body.light-theme p {
+    color: #475569;
 }
 
 .buy-btn {
@@ -118,6 +218,11 @@ p {
     border-radius: 16px;
     flex: 1;
     min-width: 250px;
+}
+
+body.light-theme .card, body.light-theme .price-card {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.1);
 }
 
 .price-card.featured {

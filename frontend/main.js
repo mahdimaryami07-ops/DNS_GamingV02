@@ -1,6 +1,17 @@
 gsap.registerPlugin(ScrollTrigger);
 
-// ۱. تولید ذرات نوری (Dust) پیرامون لوگو
+// ۱. مدیریت دکمه تغییر تم تاریک و روشن
+const themeToggle = document.getElementById('themeToggle');
+themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('light-theme');
+    if (document.body.classList.contains('light-theme')) {
+        themeToggle.textContent = '☀️';
+    } else {
+        themeToggle.textContent = '🌙';
+    }
+});
+
+// ۲. تولید ذرات نوری (Dust) پیرامون لوگو
 const dustGroup = document.getElementById('dust-group');
 const colors = ['#00e5ff', '#3b82f6', '#ffffff', '#6366f1'];
 
@@ -23,7 +34,7 @@ for (let i = 0; i < 90; i++) {
     dustGroup.appendChild(circle);
 }
 
-// ۲. تنظیمات لایه‌های ۳ بعدی
+// ۳. تنظیمات لایه‌های ۳ بعدی
 const panels = gsap.utils.toArray('.panel');
 
 panels.forEach((panel, i) => {
@@ -43,12 +54,11 @@ const tl = gsap.timeline({
     }
 });
 
-// ۳. انیمیشن فروپاشی صاعقه، هسته انرژی و پودر شدن ذرات به سمت مرکز
+// ۴. انیمیشن فروپاشی صاعقه، هسته انرژی و پودر شدن ذرات به سمت مرکز
 tl.to('.pulse-ring', { scale: 0.1, rotate: 180, opacity: 0, transformOrigin: "200px 200px", duration: 0.8 }, 0)
   .to('.energy-core', { scale: 0.1, opacity: 0, transformOrigin: "200px 200px", duration: 0.7 }, 0)
   .to('.lightning-bolt', { scale: 0, rotate: -90, opacity: 0, transformOrigin: "200px 200px", duration: 0.6 }, 0)
   
-  // کشیده شدن تمام ذرات غبار به نقطه مرکزی و نابودی کامل
   .to('.dust-p', {
       cx: 200,
       cy: 200,
@@ -58,7 +68,7 @@ tl.to('.pulse-ring', { scale: 0.1, rotate: 180, opacity: 0, transformOrigin: "20
       stagger: 0.004
   }, 0);
 
-// ۴. جابجایی بین بخش‌های سایت
+// ۵. جابجایی بین بخش‌های سایت
 panels.forEach((panel, i) => {
     if (i > 0) {
         tl.to(panels[i - 1], { opacity: 0, z: 1000, duration: 1 }, `step-${i}`)

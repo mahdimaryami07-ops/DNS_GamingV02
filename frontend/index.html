@@ -9,10 +9,28 @@
 </head>
 <body>
 
+    <!-- هدر ثابت بالا -->
+    <header class="site-header">
+        <!-- بالا سمت چپ: دکمه ورود/ثبت‌نام و تغییر تم -->
+        <div class="header-left">
+            <button class="auth-btn">ورود / ثبت‌نام</button>
+            <button class="theme-toggle-btn" id="themeToggle" title="تغییر تم">🌙</button>
+        </div>
+        <!-- بالا سمت راست: لوگوی کوچک ثابت -->
+        <div class="header-right">
+            <div class="fixed-logo">
+                <svg viewBox="0 0 50 50" width="40" height="40" fill="none">
+                    <circle cx="25" cy="25" r="20" stroke="#00e5ff" stroke-width="3"/>
+                    <path d="M25 10L17 23H24L21 38L33 21H26L25 10Z" fill="#00e5ff"/>
+                </svg>
+            </div>
+        </div>
+    </header>
+
     <div class="scroll-container">
         <div class="zoom-wrapper">
             
-            <!-- Section 1: لوگوی صاعقه و هسته انرژی با قابلیت پودر شدن به مرکز -->
+            <!-- Section 1: لوگوی اصلی صاعقه و هسته انرژی -->
             <section class="panel hero-section">
                 <div class="logo-box">
                     <svg class="dns-logo-svg" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -28,23 +46,17 @@
                             </linearGradient>
                         </defs>
 
-                        <!-- حلقه‌های فرکانس و پالس انرژی -->
                         <circle class="pulse-ring r1" cx="200" cy="200" r="110" stroke="#3b82f6" stroke-width="2" stroke-dasharray="15 8" fill="none"/>
                         <circle class="pulse-ring r2" cx="200" cy="200" r="80" stroke="#00e5ff" stroke-width="3" stroke-dasharray="6 6" fill="none"/>
-                        
-                        <!-- هسته مرکزی انرژی -->
                         <circle class="energy-core" cx="200" cy="200" r="45" fill="url(#coreGrad)"/>
-
-                        <!-- صاعقه سرعت مرکزی -->
                         <path class="lightning-bolt" d="M215 70L135 195H195L175 330L265 175H205L215 70Z" fill="url(#boltGrad)"/>
 
-                        <!-- ذرات و غبار نوری برای افکت پودر شدن -->
                         <g id="dust-group"></g>
                     </svg>
                 </div>
             </section>
 
-            <!-- Section 2: شروع محتوای اصلی سایت -->
+            <!-- Section 2: محتوای ویژگی‌ها -->
             <section class="panel features-section">
                 <div class="content">
                     <span class="badge">ULTRA LOW LATENCY</span>
@@ -67,7 +79,7 @@
                 </div>
             </section>
 
-            <!-- Section 3: قیمت‌ها -->
+            <!-- Section 3: تعرفه‌ها -->
             <section class="panel pricing-section">
                 <div class="content">
                     <h2>پلن‌های اشتراک گیمینگ</h2>
