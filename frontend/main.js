@@ -1,13 +1,44 @@
 gsap.registerPlugin(ScrollTrigger);
 
-// ۱. کلید تغییر تم
+// ۱. ساخت دینامیک بیش از ۱۵۰ ستاره پرتراکم در سراسر پس‌زمینه
+const starsContainer = document.getElementById('dynamic-stars');
+const starCount = 180;
+
+if (starsContainer) {
+    for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star-dot');
+        
+        // موقعیت تصادفی
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+        
+        // سایز تصادفی
+        const size = Math.random() * 2.5 + 1;
+        
+        // زمان‌بندی چشمک زدن تصادفی
+        const duration = Math.random() * 3 + 1.5;
+        const delay = Math.random() * 3;
+
+        star.style.left = `${x}vw`;
+        star.style.top = `${y}vh`;
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+        star.style.setProperty('--duration', `${duration}s`);
+        star.style.animationDelay = `${delay}s`;
+
+        starsContainer.appendChild(star);
+    }
+}
+
+// ۲. کلید تغییر تم
 const themeToggle = document.getElementById('themeToggle');
 themeToggle.addEventListener('click', () => {
     document.body.classList.toggle('light-theme');
     themeToggle.textContent = document.body.classList.contains('light-theme') ? '☀️' : '🌙';
 });
 
-// ۲. تولید ذرات نوری
+// ۳. تولید ذرات نوری لوگو
 const dustGroup = document.getElementById('dust-group');
 const colors = ['#00e5ff', '#3b82f6', '#ffffff', '#6366f1'];
 
@@ -29,7 +60,7 @@ for (let i = 0; i < 90; i++) {
     dustGroup.appendChild(circle);
 }
 
-// ۳. انیمیشن اسکرول
+// ۴. انیمیشن اسکرول
 const panels = gsap.utils.toArray('.panel');
 
 panels.forEach((panel, i) => {
@@ -61,7 +92,6 @@ panels.forEach((panel, i) => {
     }
 });
 
-// تابعی برای اسکرول سریع به بخش مورد نظر از طریق منو
 function jumpToPanel(index) {
     const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
     const targetScroll = (index / (panels.length - 1)) * totalScroll;
