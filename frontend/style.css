@@ -1,0 +1,117 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Vazirmatn', sans-serif;
+}
+
+body {
+    background-color: #08090d;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+.scroll-container {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
+.zoom-wrapper {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px; /* ایجاد عمق ۳ بعدی */
+    transform-style: preserve-3d;
+}
+
+.panel {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    backface-visibility: hidden;
+}
+
+.content {
+    max-width: 900px;
+    z-index: 2;
+}
+
+/* Badge */
+.badge {
+    background: rgba(0, 255, 170, 0.1);
+    color: #00ffaa;
+    border: 1px solid #00ffaa;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+/* Typography */
+h1 {
+    font-size: 3.5rem;
+    margin: 1.5rem 0 1rem;
+    background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+p {
+    font-size: 1.2rem;
+    color: #94a3b8;
+    margin-bottom: 2rem;
+}
+
+/* Buttons */
+.cta-btn, .buy-btn {
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    color: #fff;
+    border: none;
+    padding: 14px 32px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.cta-btn:hover, .buy-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.6);
+}
+
+/* Cards Grid */
+.grid, .pricing-grid {
+    display: flex;
+    gap: 20px;
+    margin-top: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card, .price-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 16px;
+    flex: 1;
+    min-width: 250px;
+}
+
+.price-card.featured {
+    border-color: #6366f1;
+    background: rgba(99, 102, 241, 0.08);
+}
