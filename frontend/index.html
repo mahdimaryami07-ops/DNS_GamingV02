@@ -5,29 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gaming DNS | نسل جدید سرورهای گیمینگ</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Vazirmatn Font for clean Iranian typography -->
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
-    <!-- Scroll Container -->
     <div class="scroll-container">
         <div class="zoom-wrapper">
             
-            <!-- Section 1: Hero -->
+            <!-- Section 1: لوگوی صاعقه و هسته انرژی با قابلیت پودر شدن به مرکز -->
             <section class="panel hero-section">
+                <div class="logo-box">
+                    <svg class="dns-logo-svg" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <radialGradient id="coreGrad" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" stop-color="#00e5ff" stop-opacity="1"/>
+                                <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.2"/>
+                            </radialGradient>
+                            <linearGradient id="boltGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#ffffff"/>
+                                <stop offset="50%" stop-color="#00e5ff"/>
+                                <stop offset="100%" stop-color="#6366f1"/>
+                            </linearGradient>
+                        </defs>
+
+                        <!-- حلقه‌های فرکانس و پالس انرژی -->
+                        <circle class="pulse-ring r1" cx="200" cy="200" r="110" stroke="#3b82f6" stroke-width="2" stroke-dasharray="15 8" fill="none"/>
+                        <circle class="pulse-ring r2" cx="200" cy="200" r="80" stroke="#00e5ff" stroke-width="3" stroke-dasharray="6 6" fill="none"/>
+                        
+                        <!-- هسته مرکزی انرژی -->
+                        <circle class="energy-core" cx="200" cy="200" r="45" fill="url(#coreGrad)"/>
+
+                        <!-- صاعقه سرعت مرکزی -->
+                        <path class="lightning-bolt" d="M215 70L135 195H195L175 330L265 175H205L215 70Z" fill="url(#boltGrad)"/>
+
+                        <!-- ذرات و غبار نوری برای افکت پودر شدن -->
+                        <g id="dust-group"></g>
+                    </svg>
+                </div>
+            </section>
+
+            <!-- Section 2: شروع محتوای اصلی سایت -->
+            <section class="panel features-section">
                 <div class="content">
                     <span class="badge">ULTRA LOW LATENCY</span>
                     <h1>سرعت بی‌نهایت، پینگ تک‌رقمی</h1>
                     <p>عبور هوشمند از تحریم‌ها و ثبت کمترین پینگ ممکن در بازی‌های آنلاین</p>
-                    <button class="cta-btn">تست رایگان DNS</button>
-                </div>
-            </section>
-
-            <!-- Section 2: Ping Comparison / Features -->
-            <section class="panel features-section">
-                <div class="content">
-                    <h2>چرا DNS اختصاصی ما؟</h2>
                     <div class="grid">
                         <div class="card">
                             <h3>کاهش پینگ تا ۴۰٪</h3>
@@ -35,7 +57,7 @@
                         </div>
                         <div class="card">
                             <h3>بدون قطعی و Loss</h3>
-                            <p>پایداری ۱۰۰ درصدی اتصال در حین رقابت‌های حساس آنلاين</p>
+                            <p>پایداری ۱۰۰ درصدی اتصال در حین رقابت‌های حساس آنلاین</p>
                         </div>
                         <div class="card">
                             <h3>سازگار با تمام دستگاه‌ها</h3>
@@ -45,7 +67,7 @@
                 </div>
             </section>
 
-            <!-- Section 3: Pricing Plans -->
+            <!-- Section 3: قیمت‌ها -->
             <section class="panel pricing-section">
                 <div class="content">
                     <h2>پلن‌های اشتراک گیمینگ</h2>
@@ -78,7 +100,6 @@
         </div>
     </div>
 
-    <!-- GSAP & ScrollTrigger Animation Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="main.js"></script>
