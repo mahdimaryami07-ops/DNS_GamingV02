@@ -9,28 +9,43 @@
 </head>
 <body>
 
-    <!-- هدر ثابت بالا -->
+    <!-- لایه‌های پس‌زمینه فضایی -->
+    <div class="space-nebula"></div>
+    <div class="stars-layer"></div>
+
+    <!-- هدر ثابت بالا به همراه منوی دسترسی سریع -->
     <header class="site-header">
-        <!-- بالا سمت چپ: دکمه ورود/ثبت‌نام و تغییر تم -->
-        <div class="header-left">
-            <button class="auth-btn">ورود / ثبت‌نام</button>
-            <button class="theme-toggle-btn" id="themeToggle" title="تغییر تم">🌙</button>
-        </div>
-        <!-- بالا سمت راست: لوگوی کوچک ثابت -->
+        <!-- بالا سمت راست: لوگو و نام برند -->
         <div class="header-right">
             <div class="fixed-logo">
-                <svg viewBox="0 0 50 50" width="40" height="40" fill="none">
+                <svg viewBox="0 0 50 50" width="42" height="42" fill="none">
                     <circle cx="25" cy="25" r="20" stroke="#00e5ff" stroke-width="3"/>
                     <path d="M25 10L17 23H24L21 38L33 21H26L25 10Z" fill="#00e5ff"/>
                 </svg>
             </div>
+            <span class="logo-title">GAMING DNS</span>
+        </div>
+
+        <!-- منوی وسط (دسترسی سریع) -->
+        <nav class="nav-menu">
+            <a href="#games" onclick="jumpToPanel(2)">بازی‌ها</a>
+            <a href="#pricing" onclick="jumpToPanel(3)">تعرفه‌ها</a>
+            <a href="#download" onclick="jumpToPanel(4)">دانلود برنامه</a>
+            <a href="#about" onclick="jumpToPanel(5)">درباره ما</a>
+            <a href="#support" onclick="jumpToPanel(6)">پشتیبانی</a>
+        </nav>
+
+        <!-- بالا سمت چپ: ورود و تغییر تم -->
+        <div class="header-left">
+            <button class="theme-toggle-btn" id="themeToggle" title="تغییر تم">🌙</button>
+            <button class="auth-btn">ورود / ثبت‌نام</button>
         </div>
     </header>
 
     <div class="scroll-container">
         <div class="zoom-wrapper">
             
-            <!-- Section 1: لوگوی اصلی صاعقه و هسته انرژی -->
+            <!-- Panel 0: لوگوی اصلی صاعقه -->
             <section class="panel hero-section">
                 <div class="logo-box">
                     <svg class="dns-logo-svg" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -56,7 +71,7 @@
                 </div>
             </section>
 
-            <!-- Section 2: محتوای ویژگی‌ها -->
+            <!-- Panel 1: ویژگی‌ها -->
             <section class="panel features-section">
                 <div class="content">
                     <span class="badge">ULTRA LOW LATENCY</span>
@@ -79,7 +94,25 @@
                 </div>
             </section>
 
-            <!-- Section 3: تعرفه‌ها -->
+            <!-- Panel 2: بازی‌های پوشش داده شده -->
+            <section class="panel games-section">
+                <div class="content">
+                    <h2>بازی‌های پشتیبانی‌شده</h2>
+                    <p>پشتیبانی کامل و پینگ بهینه شده برای تمام بازی‌های تحریم شده و رقابتی</p>
+                    <div class="grid games-grid">
+                        <div class="game-card">🎮 Warzone 2.0 / MW3</div>
+                        <div class="game-card">⚽ EA FC 24 / FIFA</div>
+                        <div class="game-card">🔫 Valorant</div>
+                        <div class="game-card">📱 PUBG Mobile</div>
+                        <div class="game-card">🛡️ Apex Legends</div>
+                        <div class="game-card">⚔️ League of Legends</div>
+                        <div class="game-card">💥 Rainbow Six Siege</div>
+                        <div class="game-card">🚗 Rocket League</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Panel 3: تعرفه‌ها -->
             <section class="panel pricing-section">
                 <div class="content">
                     <h2>پلن‌های اشتراک گیمینگ</h2>
@@ -105,6 +138,54 @@
                             </ul>
                             <button class="buy-btn">خرید آنلاین</button>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Panel 4: دانلود نرم‌افزار و انتخاب نسخه -->
+            <section class="panel download-section">
+                <div class="content">
+                    <h2>دانلود کلاینت اختصاصی DNS</h2>
+                    <p>تنظیم خودکار DNS تنها با یک کلیک بدون نیاز به تنظیمات دستی</p>
+                    <div class="grid download-grid">
+                        <div class="card dl-card">
+                            <div class="dl-icon">💻</div>
+                            <h3>نسخه ویندوز</h3>
+                            <span class="ver">v2.4.0 (Windows 10/11)</span>
+                            <button class="dl-btn">دانلود مستقیم (.exe)</button>
+                        </div>
+                        <div class="card dl-card">
+                            <div class="dl-icon">📱</div>
+                            <h3>نسخه اندروید</h3>
+                            <span class="ver">v1.8.2 (Android 8+)</span>
+                            <button class="dl-btn">دانلود APK مستقیم</button>
+                        </div>
+                        <div class="card dl-card">
+                            <div class="dl-icon">🍎</div>
+                            <h3>نسخه iOS / Mac</h3>
+                            <span class="ver">پروفایل اختصاصی DNS</span>
+                            <button class="dl-btn">دریافت پروفایل</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Panel 5: درباره ما -->
+            <section class="panel about-section">
+                <div class="content">
+                    <h2>درباره GAMING DNS</h2>
+                    <p>ما مجموعه‌ای از گیمرهای حرفه‌ای و مهندسان شبکه هستیم که با هدف حذف محدودیت‌ها و ثبت کمترین پینگ ممکن، شبکه اختصاصی زیرساخت DNS گیمینگ را راه‌اندازی کرده‌ایم. سرورهای ما بر روی داتاسنترهای اختصاصی اروپایی مستقر شده‌اند تا مسیر داده‌های بازی شما بدون گره‌های اضافه منتقل شود.</p>
+                </div>
+            </section>
+
+            <!-- Panel 6: پشتیبانی -->
+            <section class="panel support-section">
+                <div class="content">
+                    <h2>پشتیبانی ۲۴ ساعته</h2>
+                    <p>در صورت نیاز به راهنمایی یا تست رایگان، با تیم پشتیبانی ما در ارتباط باشید</p>
+                    <div class="support-buttons">
+                        <a href="#" class="supp-btn telegram">ارتباط در تلگرام</a>
+                        <a href="#" class="supp-btn discord">سرور دیسکورد</a>
                     </div>
                 </div>
             </section>
