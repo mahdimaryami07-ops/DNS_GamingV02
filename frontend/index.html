@@ -99,7 +99,7 @@
             <section class="panel games-section">
                 <div class="content">
                     <h2>بازی‌های پشتیبانی‌شده</h2>
-                    <p>پشتیبانی کامل و پینگ بهینه شده برای تمام بازی‌های تحریم‌شده و رقابتی</p>
+                    <p>پشتیبانی کامل و پینگ بهینه شده برای تمام بازی‌های تحریم‌شده و رقابتی (روی بازی‌ها کلیک کنید)</p>
 
                     <div class="games-header">
                         <div class="search-box">
@@ -115,7 +115,7 @@
                     </div>
 
                     <div class="games-container" id="gamesContainer">
-                        <div class="cyber-game-card" data-category="fps battle">
+                        <div class="cyber-game-card" data-id="warzone" data-category="fps battle">
                             <div class="game-icon">🎯</div>
                             <div class="game-info">
                                 <h3>COD: Warzone 2.0</h3>
@@ -127,7 +127,7 @@
                             </div>
                         </div>
 
-                        <div class="cyber-game-card" data-category="sports">
+                        <div class="cyber-game-card" data-id="eafc24" data-category="sports">
                             <div class="game-icon">⚽</div>
                             <div class="game-info">
                                 <h3>EA FC 24 / FIFA</h3>
@@ -139,7 +139,7 @@
                             </div>
                         </div>
 
-                        <div class="cyber-game-card" data-category="fps">
+                        <div class="cyber-game-card" data-id="valorant" data-category="fps">
                             <div class="game-icon">🔫</div>
                             <div class="game-info">
                                 <h3>Valorant</h3>
@@ -151,7 +151,7 @@
                             </div>
                         </div>
 
-                        <div class="cyber-game-card" data-category="battle fps">
+                        <div class="cyber-game-card" data-id="pubg" data-category="battle fps">
                             <div class="game-icon">📱</div>
                             <div class="game-info">
                                 <h3>PUBG Mobile</h3>
@@ -163,7 +163,7 @@
                             </div>
                         </div>
 
-                        <div class="cyber-game-card" data-category="battle fps">
+                        <div class="cyber-game-card" data-id="apex" data-category="battle fps">
                             <div class="game-icon">🛡️</div>
                             <div class="game-info">
                                 <h3>Apex Legends</h3>
@@ -175,7 +175,7 @@
                             </div>
                         </div>
 
-                        <div class="cyber-game-card" data-category="moba">
+                        <div class="cyber-game-card" data-id="lol" data-category="moba">
                             <div class="game-icon">⚔️</div>
                             <div class="game-info">
                                 <h3>League of Legends</h3>
@@ -187,7 +187,7 @@
                             </div>
                         </div>
 
-                        <div class="cyber-game-card" data-category="fps">
+                        <div class="cyber-game-card" data-id="rainbow" data-category="fps">
                             <div class="game-icon">💥</div>
                             <div class="game-info">
                                 <h3>Rainbow Six Siege</h3>
@@ -199,7 +199,7 @@
                             </div>
                         </div>
 
-                        <div class="cyber-game-card" data-category="sports">
+                        <div class="cyber-game-card" data-id="rocket" data-category="sports">
                             <div class="game-icon">🚗</div>
                             <div class="game-info">
                                 <h3>Rocket League</h3>
@@ -292,6 +292,46 @@
                 </div>
             </section>
 
+        </div>
+    </div>
+
+    <!-- ==================== پنجره اختصاصی اطلاعات بازی (Game Detail Modal) ==================== -->
+    <div class="game-modal-overlay" id="gameModal">
+        <div class="game-modal">
+            <button class="close-modal" id="closeGameBtn">&times;</button>
+            <div class="game-modal-header">
+                <div class="game-modal-icon" id="gIcon">🎯</div>
+                <div>
+                    <h2 id="gTitle">Call of Duty: Warzone 2.0</h2>
+                    <span class="badge" id="gGenre">Shooter / Battle Royale</span>
+                </div>
+            </div>
+
+            <div class="game-stats-grid">
+                <div class="stat-box">
+                    <span class="stat-label">🛠️ استودیو سازنده</span>
+                    <strong id="gDev">Raven Software / Infinity Ward</strong>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">🏢 ناشر</span>
+                    <strong id="gPublisher">Activision</strong>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">👥 پلیرهای فعال آنلاین</span>
+                    <strong id="gPlayers">+450,000 روزانه</strong>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">⚡ پینگ میانگین با DNS</span>
+                    <strong id="gPing" style="color: #00ffaa;">32 ms (بدون Packet Loss)</strong>
+                </div>
+            </div>
+
+            <div class="game-description">
+                <h3>درباره این بازی و بهینه‌سازی DNS</h3>
+                <p id="gDesc">محتوای توضیحات بازی در اینجا قرار می‌گیرد...</p>
+            </div>
+
+            <button class="auth-submit-btn" onclick="document.getElementById('gameModal').classList.remove('active'); jumpToPanel(3);">تست و خرید اشتراک مربوطه</button>
         </div>
     </div>
 

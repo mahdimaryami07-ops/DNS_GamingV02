@@ -483,6 +483,125 @@ body.light-theme .game-info h3 {
     color: #00ffaa;
 }
 
+/* ==================== استایل مودال اختصاصی توضیحات بازی ==================== */
+.game-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(2, 2, 8, 0.85);
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2500;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.game-modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.game-modal {
+    position: relative;
+    width: 100%;
+    max-width: 580px;
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    box-shadow: 0 0 50px rgba(0, 229, 255, 0.25);
+    border-radius: 20px;
+    padding: 30px;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+    text-align: right;
+}
+
+.game-modal-overlay.active .game-modal {
+    transform: scale(1);
+}
+
+body.light-theme .game-modal {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(59, 130, 246, 0.3);
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.2);
+}
+
+.game-modal-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.game-modal-icon {
+    font-size: 3rem;
+    background: rgba(0, 229, 255, 0.1);
+    border: 1px solid #00e5ff;
+    width: 70px;
+    height: 70px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.stat-box {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 12px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+body.light-theme .stat-box {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+.stat-box strong {
+    font-size: 0.92rem;
+    color: #fff;
+}
+
+body.light-theme .stat-box strong {
+    color: #0f172a;
+}
+
+.game-description h3 {
+    font-size: 1rem;
+    margin-bottom: 8px;
+    color: #00e5ff;
+}
+
+.game-description p {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: #cbd5e1;
+    margin-bottom: 20px;
+}
+
+body.light-theme .game-description p {
+    color: #334155;
+}
+
 /* دانلود و دکمه‌ها */
 .dl-card .dl-icon {
     font-size: 2.5rem;
@@ -692,7 +811,6 @@ body.light-theme .input-group input {
     color: #0f172a;
 }
 
-/* نمودار سختی رمز عبور */
 .strength-meter-box {
     background: rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -727,7 +845,6 @@ body.light-theme .input-group input {
     transition: width 0.3s ease, background-color 0.3s ease;
 }
 
-/* چک لیست سختی رمز عبور */
 .password-rules {
     list-style: none;
     display: flex;

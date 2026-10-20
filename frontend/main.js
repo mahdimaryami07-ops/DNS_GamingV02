@@ -151,6 +151,120 @@ function filterCategory(category, btn) {
     });
 }
 
+// ==================== پایگاه داده توضیحات اختصاصی بازی‌ها ====================
+const gamesData = {
+    warzone: {
+        title: "Call of Duty: Warzone 2.0",
+        genre: "Shooter / Battle Royale",
+        icon: "🎯",
+        dev: "Raven Software / Infinity Ward",
+        publisher: "Activision",
+        players: "+450,000 روزانه",
+        ping: "32 ms (بدون Packet Loss)",
+        desc: "وارزون ۲ یکی از سنگین‌ترین بازی‌های آنلاین از نظر ترافیک شبکه است. سرورهای Gaming DNS با حذف کامل گره‌های واسطه دیتاسنترهای خاورمیانه و متصل کردن مستقیم سیستم شما به سرورهای فرانكفورت آلمان، پینگ را تا ۳۲ میلی‌ثانیه کاهش داده و تحریم‌های اکتیویژن را کاملاً بی‌اثر می‌سازند."
+    },
+    eafc24: {
+        title: "EA Sports FC 24 / FIFA",
+        genre: "Sports / Football Simulator",
+        icon: "⚽",
+        dev: "EA Vancouver / EA Romania",
+        publisher: "EA Sports",
+        players: "+600,000 روزانه",
+        ping: "28 ms (تأخیر کلیک صفر)",
+        desc: "در رقابت‌های آنلاین کلاب و آلتیمیت تیم FC 24، حتی ۵ میلی‌ثانیه دلی (Delay) می‌تواند سرنوشت مسابقه را تغییر دهد. زیرساخت اختصاصی ما دلی هاردکور سرورهای EA را از بین برده و روان‌ترین تجربه پاس‌کاری و شوت‌زنی را برای شما به ارمغان می‌آورد."
+    },
+    valorant: {
+        title: "Valorant",
+        genre: "Tactical Shooter / FPS",
+        icon: "🔫",
+        dev: "Riot Games",
+        publisher: "Riot Games",
+        players: "+800,000 روزانه",
+        ping: "35 ms (ثابت و بدون نوسان)",
+        desc: "بازی ولورانت نسبت به تغییرات لحظه‌ای پینگ و چَک‌پکت‌ها بسیار حساس است. سرورهای ترکیبی استانبول و فرانکفورت Gaming DNS پینگ شما را بدون ذره‌ای Packet Loss روی ۳۵ میلی‌ثانیه قفل می‌کنند تا ریجستر تیرها کاملاً دقیق انجام شود."
+    },
+    pubg: {
+        title: "PUBG Mobile",
+        genre: "Mobile Battle Royale",
+        icon: "📱",
+        dev: "LIGHTSPEED & QUANTUM",
+        publisher: "Tencent Games",
+        players: "+2,500,000 روزانه",
+        ping: "40 ms (سازگار با ایمولاتور و موبایل)",
+        desc: "پشتیبانی کامل از شبیه‌سازهای PC (GameLoop) و گوشی‌های اندروید و iOS. رفع کامل ارورهای اتصال به سرورهای پینگی اروپا و ثبت پینگ پایدار ۴۰ms بدون قطعی صدای دیسکورد و ویس‌چت بازی."
+    },
+    apex: {
+        title: "Apex Legends",
+        genre: "Hero Shooter / Battle Royale",
+        icon: "🛡️",
+        dev: "Respawn Entertainment",
+        publisher: "Electronic Arts",
+        players: "+300,000 روزانه",
+        ping: "38 ms (بدون قطع لابی)",
+        desc: "کاهش چشمگیر ارورهای قطعی کد لابی (Code: Leaf / Code: Net) در اپکس لجندز. مسیردهی شبکه به‌صورت اختصاصی به نزدیک‌ترین دیتاسنترهای بلژیک و آلمان انجام می‌شود."
+    },
+    lol: {
+        title: "League of Legends",
+        genre: "MOBA / Strategy",
+        icon: "⚔️",
+        dev: "Riot Games",
+        publisher: "Riot Games",
+        players: "+1,200,000 روزانه",
+        ping: "42 ms (مستقیم به EU West)",
+        desc: "حذف تحریم‌های لابی لول و کاهش لَگ در مبارزات تیمی (Team Fights). متصل به دیتاسنتر EU West با کمترین زمان پاسخ‌دهی جهت کلیک‌ها و استفاده از اسکیل‌ها."
+    },
+    rainbow: {
+        title: "Rainbow Six Siege",
+        genre: "Tactical FPS / Action",
+        icon: "💥",
+        dev: "Ubisoft Montreal",
+        publisher: "Ubisoft",
+        players: "+200,000 روزانه",
+        ping: "34 ms (تأییدشده شوترهای تاکتیکال)",
+        desc: "پاسخ‌دهی سریع شبکه در نبردهای نزدیک و زاویه‌گیری‌های صدم‌ثانیه‌ای در رینبو سیکس. عبور کامل از تحریم‌های یوبی‌سافت کلاینت (Ubisoft Connect)."
+    },
+    rocket: {
+        title: "Rocket League",
+        genre: "Action / Sports",
+        icon: "🚗",
+        dev: "Psyonix",
+        publisher: "Epic Games",
+        players: "+350,000 روزانه",
+        ping: "29 ms (بدون Rubberbanding)",
+        desc: "حذف کامل افکت پرش توپ و ماشین (Rubberbanding) در سرورهای اپیک گیمز. پینگ فوق‌العاده پایین و اتصال ۱۰۰٪ پایدار."
+    }
+};
+
+// ==================== مدیریت مودال اطلاعات اختصاصی بازی‌ها ====================
+const gameModal = document.getElementById('gameModal');
+const closeGameBtn = document.getElementById('closeGameBtn');
+
+// باز شدن مودال بازی با کلیک روی کارت
+document.querySelectorAll('.cyber-game-card').forEach(card => {
+    card.addEventListener('click', () => {
+        const gameId = card.getAttribute('data-id');
+        const data = gamesData[gameId];
+
+        if (data) {
+            document.getElementById('gTitle').textContent = data.title;
+            document.getElementById('gGenre').textContent = data.genre;
+            document.getElementById('gIcon').textContent = data.icon;
+            document.getElementById('gDev').textContent = data.dev;
+            document.getElementById('gPublisher').textContent = data.publisher;
+            document.getElementById('gPlayers').textContent = data.players;
+            document.getElementById('gPing').textContent = data.ping;
+            document.getElementById('gDesc').textContent = data.desc;
+
+            gameModal.classList.add('active');
+        }
+    });
+});
+
+closeGameBtn.addEventListener('click', () => gameModal.classList.remove('active'));
+gameModal.addEventListener('click', (e) => {
+    if (e.target === gameModal) gameModal.classList.remove('active');
+});
+
 // ==================== مدیریت پنجره مودال ورود / ثبت‌نام ====================
 const authModal = document.getElementById('authModal');
 const openAuthBtn = document.getElementById('openAuthBtn');
@@ -160,7 +274,6 @@ const registerTab = document.getElementById('registerTab');
 const loginForm = document.getElementById('loginForm');
 const registerForm = document.getElementById('registerForm');
 
-// باز و بستن مودال
 openAuthBtn.addEventListener('click', () => authModal.classList.add('active'));
 closeAuthBtn.addEventListener('click', () => authModal.classList.remove('active'));
 
@@ -168,7 +281,6 @@ authModal.addEventListener('click', (e) => {
     if (e.target === authModal) authModal.classList.remove('active');
 });
 
-// سوئیچ تب‌ها
 loginTab.addEventListener('click', () => {
     loginTab.classList.add('active');
     registerTab.classList.remove('active');
@@ -183,7 +295,7 @@ registerTab.addEventListener('click', () => {
     loginForm.classList.remove('active');
 });
 
-// ==================== سنجش زنده و هوشمند سختی رمز عبور ====================
+// ==================== سنجش زنده سختی رمز عبور ====================
 const regPassword = document.getElementById('regPassword');
 const strengthBar = document.getElementById('strengthBar');
 const strengthText = document.getElementById('strengthText');
@@ -197,27 +309,22 @@ regPassword.addEventListener('input', () => {
     const val = regPassword.value;
     let score = 0;
 
-    // ۱. بررسی طول حداقل ۸ کاراکتر
     const isLengthValid = val.length >= 8;
     updateRuleState(ruleLength, isLengthValid);
     if (isLengthValid) score++;
 
-    // ۲. بررسی حروف کوچک (a-z)
     const isLowerValid = /[a-z]/.test(val);
     updateRuleState(ruleLower, isLowerValid);
     if (isLowerValid) score++;
 
-    // ۳. بررسی حروف بزرگ (A-Z)
     const isUpperValid = /[A-Z]/.test(val);
     updateRuleState(ruleUpper, isUpperValid);
     if (isUpperValid) score++;
 
-    // ۴. بررسی عدد یا سیمبل
     const isSymbolValid = /[0-9!@#$%^&*(),.?":{}|<>]/.test(val);
     updateRuleState(ruleSymbol, isSymbolValid);
     if (isSymbolValid) score++;
 
-    // به‌روزرسانی نمودار و رنگ سختی رمز عبور
     switch (score) {
         case 0:
             strengthBar.style.width = '0%';
