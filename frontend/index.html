@@ -17,7 +17,7 @@
     <header class="site-header">
         <!-- بالا سمت راست: لوگو و نام برند -->
         <div class="header-right">
-            <div class="fixed-logo">
+            <div class="fixed-logo" onclick="jumpToPanel(0)" style="cursor: pointer;">
                 <svg viewBox="0 0 50 50" width="42" height="42" fill="none">
                     <circle cx="25" cy="25" r="20" stroke="#00e5ff" stroke-width="3"/>
                     <path d="M25 10L17 23H24L21 38L33 21H26L25 10Z" fill="#00e5ff"/>
@@ -26,20 +26,20 @@
             <span class="logo-title">GAMING DNS</span>
         </div>
 
-        <!-- منوی وسط (دسترسی سریع با قابلیت روشن شدن هنگام زوم) -->
+        <!-- منوی وسط -->
         <nav class="nav-menu">
-            <a href="#features" onclick="jumpToPanel(1)" data-index="1">ویژگی‌ها</a>
-            <a href="#games" onclick="jumpToPanel(2)" data-index="2">بازی‌ها</a>
-            <a href="#pricing" onclick="jumpToPanel(3)" data-index="3">تعرفه‌ها</a>
-            <a href="#download" onclick="jumpToPanel(4)" data-index="4">دانلود برنامه</a>
-            <a href="#about" onclick="jumpToPanel(5)" data-index="5">درباره ما</a>
-            <a href="#support" onclick="jumpToPanel(6)" data-index="6">پشتیبانی</a>
+            <a href="#features" onclick="event.preventDefault(); jumpToPanel(1);" data-index="1">ویژگی‌ها</a>
+            <a href="#games" onclick="event.preventDefault(); jumpToPanel(2);" data-index="2">بازی‌ها</a>
+            <a href="#pricing" onclick="event.preventDefault(); jumpToPanel(3);" data-index="3">تعرفه‌ها</a>
+            <a href="#download" onclick="event.preventDefault(); jumpToPanel(4);" data-index="4">دانلود برنامه</a>
+            <a href="#about" onclick="event.preventDefault(); jumpToPanel(5);" data-index="5">درباره ما</a>
+            <a href="#support" onclick="event.preventDefault(); jumpToPanel(6);" data-index="6">پشتیبانی</a>
         </nav>
 
         <!-- بالا سمت چپ: تغییر تم و ورود/ثبت‌نام -->
         <div class="header-left">
             <button class="theme-toggle-btn" id="themeToggle" title="تغییر تم">🌙</button>
-            <button class="auth-btn">ورود / ثبت‌نام</button>
+            <button class="auth-btn" id="openAuthBtn">ورود / ثبت‌نام</button>
         </div>
     </header>
 
@@ -95,7 +95,7 @@
                 </div>
             </section>
 
-            <!-- Panel 2: بازی‌های پشتیبانی‌شده (سایبرپانکی) -->
+            <!-- Panel 2: بازی‌های پشتیبانی‌شده -->
             <section class="panel games-section">
                 <div class="content">
                     <h2>بازی‌های پشتیبانی‌شده</h2>
@@ -116,7 +116,6 @@
 
                     <div class="games-container" id="gamesContainer">
                         <div class="cyber-game-card" data-category="fps battle">
-                            <div class="card-glow"></div>
                             <div class="game-icon">🎯</div>
                             <div class="game-info">
                                 <h3>COD: Warzone 2.0</h3>
@@ -129,7 +128,6 @@
                         </div>
 
                         <div class="cyber-game-card" data-category="sports">
-                            <div class="card-glow"></div>
                             <div class="game-icon">⚽</div>
                             <div class="game-info">
                                 <h3>EA FC 24 / FIFA</h3>
@@ -142,7 +140,6 @@
                         </div>
 
                         <div class="cyber-game-card" data-category="fps">
-                            <div class="card-glow"></div>
                             <div class="game-icon">🔫</div>
                             <div class="game-info">
                                 <h3>Valorant</h3>
@@ -155,7 +152,6 @@
                         </div>
 
                         <div class="cyber-game-card" data-category="battle fps">
-                            <div class="card-glow"></div>
                             <div class="game-icon">📱</div>
                             <div class="game-info">
                                 <h3>PUBG Mobile</h3>
@@ -168,7 +164,6 @@
                         </div>
 
                         <div class="cyber-game-card" data-category="battle fps">
-                            <div class="card-glow"></div>
                             <div class="game-icon">🛡️</div>
                             <div class="game-info">
                                 <h3>Apex Legends</h3>
@@ -181,7 +176,6 @@
                         </div>
 
                         <div class="cyber-game-card" data-category="moba">
-                            <div class="card-glow"></div>
                             <div class="game-icon">⚔️</div>
                             <div class="game-info">
                                 <h3>League of Legends</h3>
@@ -194,7 +188,6 @@
                         </div>
 
                         <div class="cyber-game-card" data-category="fps">
-                            <div class="card-glow"></div>
                             <div class="game-icon">💥</div>
                             <div class="game-info">
                                 <h3>Rainbow Six Siege</h3>
@@ -207,7 +200,6 @@
                         </div>
 
                         <div class="cyber-game-card" data-category="sports">
-                            <div class="card-glow"></div>
                             <div class="game-icon">🚗</div>
                             <div class="game-info">
                                 <h3>Rocket League</h3>
@@ -300,6 +292,64 @@
                 </div>
             </section>
 
+        </div>
+    </div>
+
+    <!-- ==================== پنجره مودال ورود / ثبت‌نام ==================== -->
+    <div class="auth-modal-overlay" id="authModal">
+        <div class="auth-modal">
+            <button class="close-modal" id="closeAuthBtn">&times;</button>
+            
+            <div class="auth-tabs">
+                <button class="tab-btn active" id="loginTab">ورود به حساب</button>
+                <button class="tab-btn" id="registerTab">ثبت‌نام حساب جدید</button>
+            </div>
+
+            <!-- فرم ورود -->
+            <form class="auth-form active" id="loginForm">
+                <div class="input-group">
+                    <label>ایمیل یا نام کاربری</label>
+                    <input type="text" placeholder="example@gmail.com" required>
+                </div>
+                <div class="input-group">
+                    <label>رمز عبور</label>
+                    <input type="password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="auth-submit-btn">ورود به حساب</button>
+            </form>
+
+            <!-- فرم ثبت‌نام -->
+            <form class="auth-form" id="registerForm">
+                <div class="input-group">
+                    <label>ایمیل</label>
+                    <input type="email" placeholder="example@gmail.com" required>
+                </div>
+                <div class="input-group">
+                    <label>رمز عبور جدید</label>
+                    <input type="password" id="regPassword" placeholder="رمز عبور خود را وارد کنید" required>
+                </div>
+
+                <!-- نمودار و سنجش سختی رمز عبور -->
+                <div class="strength-meter-box">
+                    <div class="strength-label">
+                        <span>سختی رمز عبور:</span>
+                        <strong id="strengthText">خیلی ضعیف</strong>
+                    </div>
+                    <div class="strength-bar-bg">
+                        <div class="strength-bar-fill" id="strengthBar"></div>
+                    </div>
+
+                    <!-- قوانین و چک‌لیست رمز عبور -->
+                    <ul class="password-rules">
+                        <li id="ruleLength"><span class="rule-icon">✕</span> حداقل ۸ کاراکتر</li>
+                        <li id="ruleLower"><span class="rule-icon">✕</span> حداقل یک حرف کوچک (a-z)</li>
+                        <li id="ruleUpper"><span class="rule-icon">✕</span> حداقل یک حرف بزرگ (A-Z)</li>
+                        <li id="ruleSymbol"><span class="rule-icon">✕</span> حداقل یک عدد یا سیمبل (@#$%^&*)</li>
+                    </ul>
+                </div>
+
+                <button type="submit" class="auth-submit-btn">ایجاد حساب گیمینگ</button>
+            </form>
         </div>
     </div>
 

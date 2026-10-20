@@ -1,6 +1,6 @@
 gsap.registerPlugin(ScrollTrigger);
 
-// ۱. ساخت دینامیک ستاره‌های پرتراکم پس‌زمینه
+// ۱. تولید ستاره‌های پویای پس‌زمینه
 const starsContainer = document.getElementById('dynamic-stars');
 const starCount = 180;
 
@@ -33,7 +33,7 @@ themeToggle.addEventListener('click', () => {
     themeToggle.textContent = document.body.classList.contains('light-theme') ? '☀️' : '🌙';
 });
 
-// ۳. تولید ذرات پودری نوری لوگو
+// ۳. تولید ذرات نوری لوگو
 const dustGroup = document.getElementById('dust-group');
 const colors = ['#00e5ff', '#3b82f6', '#ffffff', '#6366f1'];
 
@@ -55,7 +55,7 @@ for (let i = 0; i < 90; i++) {
     dustGroup.appendChild(circle);
 }
 
-// ۴. انیمیشن زوم و اسکرول GSAP + هایلایت هوشمند منوی هدر
+// ۴. ساختار اسکرول GSAP + روشن شدن دقیق آیتم منو
 const panels = gsap.utils.toArray('.panel');
 const navLinks = document.querySelectorAll('.nav-menu a');
 
@@ -103,14 +103,21 @@ panels.forEach((panel, i) => {
     }
 });
 
-// ۵. جامپ سریع با کلیک روی هر گزینه منو
+// ۵. پرش دقیق صدم‌ثانیه‌ای به مرکز هر پنل با کلیک روی منو
 function jumpToPanel(index) {
-    const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
-    const targetScroll = (index / (panels.length - 1)) * totalScroll;
-    window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+    const totalPanels = panels.length;
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    
+    const stepRatio = index / (totalPanels - 1);
+    const targetScroll = stepRatio * maxScroll;
+
+    window.scrollTo({
+        top: targetScroll,
+        behavior: 'smooth'
+    });
 }
 
-// ۶. جستجوی زنده در کارت‌های بازی
+// ۶. جستجوی زنده بازی‌ها
 function filterGames() {
     const searchInput = document.getElementById('gameSearch').value.toLowerCase();
     const cards = document.querySelectorAll('.cyber-game-card');
@@ -142,4 +149,116 @@ function filterCategory(category, btn) {
             card.style.display = 'none';
         }
     });
+}
+
+// ==================== مدیریت پنجره مودال ورود / ثبت‌نام ====================
+const authModal = document.getElementById('authModal');
+const openAuthBtn = document.getElementById('openAuthBtn');
+const closeAuthBtn = document.getElementById('closeAuthBtn');
+const loginTab = document.getElementById('loginTab');
+const registerTab = document.getElementById('registerTab');
+const loginForm = document.getElementById('loginForm');
+const registerForm = document.getElementById('registerForm');
+
+// باز و بستن مودال
+openAuthBtn.addEventListener('click', () => authModal.classList.add('active'));
+closeAuthBtn.addEventListener('click', () => authModal.classList.remove('active'));
+
+authModal.addEventListener('click', (e) => {
+    if (e.target === authModal) authModal.classList.remove('active');
+});
+
+// سوئیچ تب‌ها
+loginTab.addEventListener('click', () => {
+    loginTab.classList.add('active');
+    registerTab.classList.remove('active');
+    loginForm.classList.add('active');
+    registerForm.classList.remove('active');
+});
+
+registerTab.addEventListener('click', () => {
+    registerTab.classList.add('active');
+    loginTab.classList.remove('active');
+    registerForm.classList.add('active');
+    loginForm.classList.remove('active');
+});
+
+// ==================== سنجش زنده و هوشمند سختی رمز عبور ====================
+const regPassword = document.getElementById('regPassword');
+const strengthBar = document.getElementById('strengthBar');
+const strengthText = document.getElementById('strengthText');
+
+const ruleLength = document.getElementById('ruleLength');
+const ruleLower = document.getElementById('ruleLower');
+const ruleUpper = document.getElementById('ruleUpper');
+const ruleSymbol = document.getElementById('ruleSymbol');
+
+regPassword.addEventListener('input', () => {
+    const val = regPassword.value;
+    let score = 0;
+
+    // ۱. بررسی طول حداقل ۸ کاراکتر
+    const isLengthValid = val.length >= 8;
+    updateRuleState(ruleLength, isLengthValid);
+    if (isLengthValid) score++;
+
+    // ۲. بررسی حروف کوچک (a-z)
+    const isLowerValid = /[a-z]/.test(val);
+    updateRuleState(ruleLower, isLowerValid);
+    if (isLowerValid) score++;
+
+    // ۳. بررسی حروف بزرگ (A-Z)
+    const isUpperValid = /[A-Z]/.test(val);
+    updateRuleState(ruleUpper, isUpperValid);
+    if (isUpperValid) score++;
+
+    // ۴. بررسی عدد یا سیمبل
+    const isSymbolValid = /[0-9!@#$%^&*(),.?":{}|<>]/.test(val);
+    updateRuleState(ruleSymbol, isSymbolValid);
+    if (isSymbolValid) score++;
+
+    // به‌روزرسانی نمودار و رنگ سختی رمز عبور
+    switch (score) {
+        case 0:
+            strengthBar.style.width = '0%';
+            strengthBar.style.backgroundColor = '#ff4757';
+            strengthText.textContent = 'خیلی ضعیف';
+            strengthText.style.color = '#ff4757';
+            break;
+        case 1:
+            strengthBar.style.width = '25%';
+            strengthBar.style.backgroundColor = '#ff4757';
+            strengthText.textContent = 'ضعیف';
+            strengthText.style.color = '#ff4757';
+            break;
+        case 2:
+            strengthBar.style.width = '50%';
+            strengthBar.style.backgroundColor = '#ffa502';
+            strengthText.textContent = 'متوسط';
+            strengthText.style.color = '#ffa502';
+            break;
+        case 3:
+            strengthBar.style.width = '75%';
+            strengthBar.style.backgroundColor = '#2ed573';
+            strengthText.textContent = 'خوب';
+            strengthText.style.color = '#2ed573';
+            break;
+        case 4:
+            strengthBar.style.width = '100%';
+            strengthBar.style.backgroundColor = '#00ffaa';
+            strengthText.textContent = 'عالی و فوق‌العاده قوی';
+            strengthText.style.color = '#00ffaa';
+            break;
+    }
+});
+
+function updateRuleState(element, isValid) {
+    const icon = element.querySelector('.rule-icon');
+    if (isValid) {
+        element.classList.add('valid');
+        icon.textContent = '✓';
+    } else {
+        element.classList.remove('valid');
+        icon.textContent = '✕';
+    }
 }
