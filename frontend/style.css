@@ -13,7 +13,6 @@ body {
     min-height: 100vh;
 }
 
-/* لایه سحابی فضایی */
 .space-nebula {
     position: fixed;
     top: 0;
@@ -67,7 +66,6 @@ body.light-theme .star-dot {
     box-shadow: 0 0 4px rgba(30, 41, 59, 0.4);
 }
 
-/* هدر ثابت */
 .site-header {
     position: fixed;
     top: 0;
@@ -111,7 +109,7 @@ body.light-theme .star-dot {
 
 .nav-menu {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     background: rgba(255, 255, 255, 0.03);
     padding: 8px 18px;
     border-radius: 30px;
@@ -122,9 +120,9 @@ body.light-theme .star-dot {
 .nav-menu a {
     color: #94a3b8;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: bold;
-    padding: 6px 14px;
+    padding: 6px 12px;
     border-radius: 15px;
     transition: all 0.3s ease;
 }
@@ -195,7 +193,6 @@ body.light-theme .theme-toggle-btn {
     color: #333;
 }
 
-/* اسکرول و پنل‌ها */
 .scroll-container {
     height: 100vh;
     width: 100vw;
@@ -483,123 +480,177 @@ body.light-theme .game-info h3 {
     color: #00ffaa;
 }
 
-/* ==================== استایل مودال اختصاصی توضیحات بازی ==================== */
-.game-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(2, 2, 8, 0.85);
-    backdrop-filter: blur(15px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2500;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-}
-
-.game-modal-overlay.active {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.game-modal {
-    position: relative;
+/* ==================== استایل سوالات متداول زنجیره‌ای (Tree FAQ) ==================== */
+.faq-content {
+    max-width: 900px;
     width: 100%;
-    max-width: 580px;
-    background: rgba(15, 23, 42, 0.95);
-    border: 1px solid rgba(0, 229, 255, 0.3);
-    box-shadow: 0 0 50px rgba(0, 229, 255, 0.25);
-    border-radius: 20px;
-    padding: 30px;
-    transform: scale(0.9);
-    transition: transform 0.3s ease;
-    text-align: right;
 }
 
-.game-modal-overlay.active .game-modal {
-    transform: scale(1);
-}
-
-body.light-theme .game-modal {
-    background: rgba(255, 255, 255, 0.95);
-    border-color: rgba(59, 130, 246, 0.3);
-    box-shadow: 0 0 40px rgba(59, 130, 246, 0.2);
-}
-
-.game-modal-header {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-.game-modal-icon {
-    font-size: 3rem;
-    background: rgba(0, 229, 255, 0.1);
-    border: 1px solid #00e5ff;
-    width: 70px;
-    height: 70px;
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.game-stats-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 20px;
-}
-
-.stat-box {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 12px;
-    border-radius: 12px;
+.faq-tree-container {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    align-items: center;
+    gap: 20px;
+    margin-top: 25px;
+    width: 100%;
 }
 
-body.light-theme .stat-box {
+.tree-root-node {
+    background: linear-gradient(90deg, #00e5ff, #3b82f6);
+    color: #020208;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 0.95rem;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+    position: relative;
+}
+
+.tree-root-node::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    width: 2px;
+    height: 15px;
+    background: #00e5ff;
+}
+
+.tree-branches {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.tree-branch {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(0, 229, 255, 0.2);
+    border-radius: 16px;
+    backdrop-filter: blur(12px);
+    flex: 1;
+    min-width: 260px;
+    max-width: 280px;
+    overflow: hidden;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.tree-branch:hover {
+    border-color: #00e5ff;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.2);
+}
+
+body.light-theme .tree-branch {
     background: rgba(0, 0, 0, 0.03);
-    border-color: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.1);
 }
 
-.stat-label {
-    font-size: 0.8rem;
-    color: #94a3b8;
+.branch-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.02);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.stat-box strong {
-    font-size: 0.92rem;
+.branch-header .branch-title {
+    font-weight: bold;
+    font-size: 1rem;
     color: #fff;
+    flex-grow: 1;
+    text-align: right;
+    margin-right: 10px;
 }
 
-body.light-theme .stat-box strong {
+body.light-theme .branch-header .branch-title {
     color: #0f172a;
 }
 
-.game-description h3 {
-    font-size: 1rem;
-    margin-bottom: 8px;
+.branch-toggle-icon {
+    font-size: 1.3rem;
+    color: #00e5ff;
+    font-weight: bold;
+    transition: transform 0.3s;
+}
+
+.tree-branch.open .branch-toggle-icon {
+    transform: rotate(45deg);
+}
+
+.branch-nodes {
+    display: none;
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
+}
+
+.tree-branch.open .branch-nodes {
+    display: flex;
+}
+
+.node-item {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: right;
+}
+
+body.light-theme .node-item {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.node-question {
+    padding: 10px 14px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #cbd5e1;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s;
+}
+
+body.light-theme .node-question {
+    color: #334155;
+}
+
+.node-question:hover {
     color: #00e5ff;
 }
 
-.game-description p {
-    font-size: 0.92rem;
-    line-height: 1.7;
-    color: #cbd5e1;
-    margin-bottom: 20px;
+.q-arrow {
+    font-size: 0.7rem;
+    color: #94a3b8;
+    transition: transform 0.3s;
 }
 
-body.light-theme .game-description p {
-    color: #334155;
+.node-item.active .q-arrow {
+    transform: rotate(180deg);
+    color: #00e5ff;
+}
+
+.node-answer {
+    display: none;
+    padding: 10px 14px;
+    font-size: 0.8rem;
+    line-height: 1.7;
+    color: #94a3b8;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+body.light-theme .node-answer {
+    color: #475569;
+}
+
+.node-item.active .node-answer {
+    display: block;
 }
 
 /* دانلود و دکمه‌ها */
@@ -662,7 +713,7 @@ body.light-theme .game-description p {
     transform: translateY(-3px);
 }
 
-/* ==================== استایل مودال ورود / ثبت‌نام ==================== */
+/* مودال ورود / ثبت‌نام */
 .auth-modal-overlay {
     position: fixed;
     top: 0;
@@ -866,22 +917,4 @@ body.light-theme .input-group input {
 }
 
 .password-rules li.valid {
-    color: #00ffaa;
-}
-
-.auth-submit-btn {
-    background: linear-gradient(90deg, #00e5ff, #3b82f6);
-    color: #020208;
-    border: none;
-    padding: 12px;
-    border-radius: 10px;
-    font-weight: bold;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: box-shadow 0.3s;
-}
-
-.auth-submit-btn:hover {
-    box-shadow: 0 0 20px rgba(0, 229, 255, 0.5);
-}
+    color: #00ff}

@@ -1,6 +1,5 @@
 gsap.registerPlugin(ScrollTrigger);
 
-// ۱. تولید ستاره‌های پویای پس‌زمینه
 const starsContainer = document.getElementById('dynamic-stars');
 const starCount = 180;
 
@@ -26,14 +25,12 @@ if (starsContainer) {
     }
 }
 
-// ۲. سوئیچ تم تاریک و روشن
 const themeToggle = document.getElementById('themeToggle');
 themeToggle.addEventListener('click', () => {
     document.body.classList.toggle('light-theme');
     themeToggle.textContent = document.body.classList.contains('light-theme') ? '☀️' : '🌙';
 });
 
-// ۳. تولید ذرات نوری لوگو
 const dustGroup = document.getElementById('dust-group');
 const colors = ['#00e5ff', '#3b82f6', '#ffffff', '#6366f1'];
 
@@ -55,7 +52,6 @@ for (let i = 0; i < 90; i++) {
     dustGroup.appendChild(circle);
 }
 
-// ۴. ساختار اسکرول GSAP + روشن شدن دقیق آیتم منو
 const panels = gsap.utils.toArray('.panel');
 const navLinks = document.querySelectorAll('.nav-menu a');
 
@@ -103,7 +99,6 @@ panels.forEach((panel, i) => {
     }
 });
 
-// ۵. پرش دقیق صدم‌ثانیه‌ای به مرکز هر پنل با کلیک روی منو
 function jumpToPanel(index) {
     const totalPanels = panels.length;
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
@@ -117,7 +112,6 @@ function jumpToPanel(index) {
     });
 }
 
-// ۶. جستجوی زنده بازی‌ها
 function filterGames() {
     const searchInput = document.getElementById('gameSearch').value.toLowerCase();
     const cards = document.querySelectorAll('.cyber-game-card');
@@ -134,7 +128,6 @@ function filterGames() {
     });
 }
 
-// ۷. فیلتر دسته‌بندی بازی‌ها
 function filterCategory(category, btn) {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
@@ -151,7 +144,17 @@ function filterCategory(category, btn) {
     });
 }
 
-// ==================== پایگاه داده توضیحات اختصاصی بازی‌ها ====================
+// ==================== تعاملات زنجیره درختی سوالات متداول ====================
+function toggleBranch(element) {
+    const branch = element.parentElement;
+    branch.classList.toggle('open');
+}
+
+function toggleAnswer(element) {
+    const nodeItem = element.parentElement;
+    nodeItem.classList.toggle('active');
+}
+
 const gamesData = {
     warzone: {
         title: "Call of Duty: Warzone 2.0",
@@ -235,11 +238,9 @@ const gamesData = {
     }
 };
 
-// ==================== مدیریت مودال اطلاعات اختصاصی بازی‌ها ====================
 const gameModal = document.getElementById('gameModal');
 const closeGameBtn = document.getElementById('closeGameBtn');
 
-// باز شدن مودال بازی با کلیک روی کارت
 document.querySelectorAll('.cyber-game-card').forEach(card => {
     card.addEventListener('click', () => {
         const gameId = card.getAttribute('data-id');
@@ -265,7 +266,6 @@ gameModal.addEventListener('click', (e) => {
     if (e.target === gameModal) gameModal.classList.remove('active');
 });
 
-// ==================== مدیریت پنجره مودال ورود / ثبت‌نام ====================
 const authModal = document.getElementById('authModal');
 const openAuthBtn = document.getElementById('openAuthBtn');
 const closeAuthBtn = document.getElementById('closeAuthBtn');
@@ -295,7 +295,6 @@ registerTab.addEventListener('click', () => {
     loginForm.classList.remove('active');
 });
 
-// ==================== سنجش زنده سختی رمز عبور ====================
 const regPassword = document.getElementById('regPassword');
 const strengthBar = document.getElementById('strengthBar');
 const strengthText = document.getElementById('strengthText');

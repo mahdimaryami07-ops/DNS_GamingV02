@@ -15,7 +15,6 @@
 
     <!-- هدر ثابت بالا -->
     <header class="site-header">
-        <!-- بالا سمت راست: لوگو و نام برند -->
         <div class="header-right">
             <div class="fixed-logo" onclick="jumpToPanel(0)" style="cursor: pointer;">
                 <svg viewBox="0 0 50 50" width="42" height="42" fill="none">
@@ -26,17 +25,16 @@
             <span class="logo-title">GAMING DNS</span>
         </div>
 
-        <!-- منوی وسط -->
         <nav class="nav-menu">
             <a href="#features" onclick="event.preventDefault(); jumpToPanel(1);" data-index="1">ویژگی‌ها</a>
             <a href="#games" onclick="event.preventDefault(); jumpToPanel(2);" data-index="2">بازی‌ها</a>
             <a href="#pricing" onclick="event.preventDefault(); jumpToPanel(3);" data-index="3">تعرفه‌ها</a>
             <a href="#download" onclick="event.preventDefault(); jumpToPanel(4);" data-index="4">دانلود برنامه</a>
-            <a href="#about" onclick="event.preventDefault(); jumpToPanel(5);" data-index="5">درباره ما</a>
-            <a href="#support" onclick="event.preventDefault(); jumpToPanel(6);" data-index="6">پشتیبانی</a>
+            <a href="#faq" onclick="event.preventDefault(); jumpToPanel(5);" data-index="5">سوالات متداول</a>
+            <a href="#about" onclick="event.preventDefault(); jumpToPanel(6);" data-index="6">درباره ما</a>
+            <a href="#support" onclick="event.preventDefault(); jumpToPanel(7);" data-index="7">پشتیبانی</a>
         </nav>
 
-        <!-- بالا سمت چپ: تغییر تم و ورود/ثبت‌نام -->
         <div class="header-left">
             <button class="theme-toggle-btn" id="themeToggle" title="تغییر تم">🌙</button>
             <button class="auth-btn" id="openAuthBtn">ورود / ثبت‌نام</button>
@@ -272,7 +270,112 @@
                 </div>
             </section>
 
-            <!-- Panel 5: درباره ما -->
+            <!-- Panel 5: سوالات متداول به صورت زنجیره درختی تعاملی -->
+            <section class="panel faq-section">
+                <div class="content faq-content">
+                    <h2>سوالات متداول</h2>
+                    <p>برای نمایش پاسخ‌ها، روی هر شاخه و سوال کلیک کنید</p>
+
+                    <div class="faq-tree-container">
+                        <!-- هسته مرکزی -->
+                        <div class="tree-root-node">
+                            <span>Gaming DNS Core</span>
+                        </div>
+
+                        <div class="tree-branches">
+                            <!-- شاخه ۱ -->
+                            <div class="tree-branch">
+                                <div class="branch-header" onclick="toggleBranch(this)">
+                                    <span class="branch-icon">⚡</span>
+                                    <span class="branch-title">عملکرد و پینگ</span>
+                                    <span class="branch-toggle-icon">+</span>
+                                </div>
+                                <div class="branch-nodes">
+                                    <div class="node-item">
+                                        <div class="node-question" onclick="toggleAnswer(this)">
+                                            <span>چگونه پینگ بازی‌ها کاهش می‌یابد؟</span>
+                                            <span class="q-arrow">▼</span>
+                                        </div>
+                                        <div class="node-answer">
+                                            <p>با حذف گره‌های واسطه مخابراتی و مسیریابی مستقیم شبکه به نزدیک‌ترین دیتاسنترهای اروپایی (آلمان، ترکیه)، مسیر پاسخ‌دهی کوتاه‌تر شده و پینگ تا ۴۰٪ کاهش می‌یابد.</p>
+                                        </div>
+                                    </div>
+                                    <div class="node-item">
+                                        <div class="node-question" onclick="toggleAnswer(this)">
+                                            <span>آیا Packet Loss صفر می‌شود؟</span>
+                                            <span class="q-arrow">▼</span>
+                                        </div>
+                                        <div class="node-answer">
+                                            <p>بله! سرورهای ما مجهز به سیستم Anti-Packet-Loss هستند که از گم شدن پکت‌ها در عبور از خطوط بین‌المللی جلوگیری می‌کنند.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- شاخه ۲ -->
+                            <div class="tree-branch">
+                                <div class="branch-header" onclick="toggleBranch(this)">
+                                    <span class="branch-icon">🔒</span>
+                                    <span class="branch-title">امنیت و تحریم</span>
+                                    <span class="branch-toggle-icon">+</span>
+                                </div>
+                                <div class="branch-nodes">
+                                    <div class="node-item">
+                                        <div class="node-question" onclick="toggleAnswer(this)">
+                                            <span>آیا خطر بن شدن اکانت وجود دارد؟</span>
+                                            <span class="q-arrow">▼</span>
+                                        </div>
+                                        <div class="node-answer">
+                                            <p>خیر، سرویس ما یک DNS اختصاصی و قانونی گیمینگ است و هیچ‌گونه تغییری در فایل‌های بازی ایجاد نمی‌کند، بنابراین کاملاً مطمئن و بدون خطر بن است.</p>
+                                        </div>
+                                    </div>
+                                    <div class="node-item">
+                                        <div class="node-question" onclick="toggleAnswer(this)">
+                                            <span>کدام تحریم‌ها رفع می‌شوند؟</span>
+                                            <span class="q-arrow">▼</span>
+                                        </div>
+                                        <div class="node-answer">
+                                            <p>تمامی تحریم‌های ریجن ایران در بازی‌های اکتیویژن (Warzone)، الکترونیک آرتز (FC 24 / Apex)، راپوت گیمز (Valorant) و یوبی‌سافت کاملاً دور زده می‌شوند.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- شاخه ۳ -->
+                            <div class="tree-branch">
+                                <div class="branch-header" onclick="toggleBranch(this)">
+                                    <span class="branch-icon">🎮</span>
+                                    <span class="branch-title">نصب و اتصال</span>
+                                    <span class="branch-toggle-icon">+</span>
+                                </div>
+                                <div class="branch-nodes">
+                                    <div class="node-item">
+                                        <div class="node-question" onclick="toggleAnswer(this)">
+                                            <span>روی کنسول‌های PS5 و Xbox چگونه نصب می‌شود؟</span>
+                                            <span class="q-arrow">▼</span>
+                                        </div>
+                                        <div class="node-answer">
+                                            <p>تنها کافیست در بخش تنظیمات شبکه کنسول (Network Settings)، دو آدرس IP ارائه شده توسط کلاینت یا پنل خود را در بخش Primary و Secondary DNS وارد کنید.</p>
+                                        </div>
+                                    </div>
+                                    <div class="node-item">
+                                        <div class="node-question" onclick="toggleAnswer(this)">
+                                            <span>آیا نیازی به روتر خاصی هست؟</span>
+                                            <span class="q-arrow">▼</span>
+                                        </div>
+                                        <div class="node-answer">
+                                            <p>خیر، نرم‌افزار هوشمند ویندوز و اندروید ما با یک کلیک DNS را ست می‌کند و نیازی به کانفیگ روتر نخواهید داشت.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Panel 6: درباره ما -->
             <section class="panel about-section">
                 <div class="content">
                     <h2>درباره GAMING DNS</h2>
@@ -280,7 +383,7 @@
                 </div>
             </section>
 
-            <!-- Panel 6: پشتیبانی -->
+            <!-- Panel 7: پشتیبانی -->
             <section class="panel support-section">
                 <div class="content">
                     <h2>پشتیبانی ۲۴ ساعته</h2>
@@ -295,7 +398,7 @@
         </div>
     </div>
 
-    <!-- ==================== پنجره اختصاصی اطلاعات بازی (Game Detail Modal) ==================== -->
+    <!-- مودال اطلاعات بازی -->
     <div class="game-modal-overlay" id="gameModal">
         <div class="game-modal">
             <button class="close-modal" id="closeGameBtn">&times;</button>
@@ -335,7 +438,7 @@
         </div>
     </div>
 
-    <!-- ==================== پنجره مودال ورود / ثبت‌نام ==================== -->
+    <!-- مودال ورود / ثبت‌نام -->
     <div class="auth-modal-overlay" id="authModal">
         <div class="auth-modal">
             <button class="close-modal" id="closeAuthBtn">&times;</button>
@@ -345,7 +448,6 @@
                 <button class="tab-btn" id="registerTab">ثبت‌نام حساب جدید</button>
             </div>
 
-            <!-- فرم ورود -->
             <form class="auth-form active" id="loginForm">
                 <div class="input-group">
                     <label>ایمیل یا شماره همراه</label>
@@ -358,7 +460,6 @@
                 <button type="submit" class="auth-submit-btn">ورود به حساب</button>
             </form>
 
-            <!-- فرم ثبت‌نام -->
             <form class="auth-form" id="registerForm">
                 <div class="input-group">
                     <label>ایمیل</label>
@@ -373,7 +474,6 @@
                     <input type="password" id="regPassword" placeholder="رمز عبور خود را وارد کنید" required>
                 </div>
 
-                <!-- نمودار و سنجش سختی رمز عبور -->
                 <div class="strength-meter-box">
                     <div class="strength-label">
                         <span>سختی رمز عبور:</span>
@@ -383,7 +483,6 @@
                         <div class="strength-bar-fill" id="strengthBar"></div>
                     </div>
 
-                    <!-- قوانین و چک‌لیست رمز عبور -->
                     <ul class="password-rules">
                         <li id="ruleLength"><span class="rule-icon">✕</span> حداقل ۸ کاراکتر</li>
                         <li id="ruleLower"><span class="rule-icon">✕</span> حداقل یک حرف کوچک (a-z)</li>
