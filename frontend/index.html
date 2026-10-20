@@ -308,8 +308,8 @@
             <!-- فرم ورود -->
             <form class="auth-form active" id="loginForm">
                 <div class="input-group">
-                    <label>ایمیل یا نام کاربری</label>
-                    <input type="text" placeholder="example@gmail.com" required>
+                    <label>ایمیل یا شماره همراه</label>
+                    <input type="text" placeholder="example@gmail.com یا 09123456789" required>
                 </div>
                 <div class="input-group">
                     <label>رمز عبور</label>
@@ -323,6 +323,10 @@
                 <div class="input-group">
                     <label>ایمیل</label>
                     <input type="email" placeholder="example@gmail.com" required>
+                </div>
+                <div class="input-group">
+                    <label>شماره تلفن همراه</label>
+                    <input type="tel" id="regPhone" placeholder="09123456789" pattern="^09[0-9]{9}$" dir="ltr" style="text-align: right;" required>
                 </div>
                 <div class="input-group">
                     <label>رمز عبور جدید</label>

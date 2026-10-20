@@ -570,13 +570,23 @@ body.light-theme .game-info h3 {
     position: relative;
     width: 100%;
     max-width: 440px;
-    background: rgba(15, 23, 42, 0.9);
+    max-height: 90vh;
+    overflow-y: auto;
+    background: rgba(15, 23, 42, 0.95);
     border: 1px solid rgba(0, 229, 255, 0.3);
     box-shadow: 0 0 50px rgba(0, 229, 255, 0.25);
     border-radius: 20px;
     padding: 30px;
     transform: scale(0.9);
     transition: transform 0.3s ease;
+}
+
+.auth-modal::-webkit-scrollbar {
+    width: 4px;
+}
+.auth-modal::-webkit-scrollbar-thumb {
+    background: rgba(0, 229, 255, 0.3);
+    border-radius: 10px;
 }
 
 .auth-modal-overlay.active .auth-modal {
@@ -738,13 +748,8 @@ body.light-theme .input-group input {
     font-weight: bold;
 }
 
-/* حالت تایید و سبز شدن هر قانون */
 .password-rules li.valid {
     color: #00ffaa;
-}
-
-.password-rules li.valid .rule-icon {
-    content: '✓';
 }
 
 .auth-submit-btn {
