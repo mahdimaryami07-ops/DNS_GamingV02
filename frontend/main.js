@@ -1,10 +1,10 @@
-// ۱. تولید ستاره‌های پویای پس‌زمینه (فعال در تمام صفحات)
+// ۱. تولید ستاره‌های پویای پس‌زمینه (در صفحه اصلی و داشبورد)
 function initDynamicStars() {
     const starsContainer = document.getElementById('dynamic-stars');
     const starCount = 180;
 
     if (starsContainer) {
-        starsContainer.innerHTML = ''; // پاکسازی احتمالی قبلی
+        starsContainer.innerHTML = '';
         for (let i = 0; i < starCount; i++) {
             const star = document.createElement('div');
             star.classList.add('star-dot');
@@ -27,12 +27,11 @@ function initDynamicStars() {
     }
 }
 
-// اجرای ساخت ستاره‌ها پس از لود شدن DOM
 document.addEventListener('DOMContentLoaded', () => {
     initDynamicStars();
 });
 
-// ۲. سوئیچ تم تاریک و روشن (فعال در صفحه اصلی و داشبورد)
+// ۲. سوئیچ تم تاریک و روشن
 const themeToggle = document.getElementById('themeToggle');
 if (themeToggle) {
     themeToggle.addEventListener('click', () => {
@@ -44,7 +43,7 @@ if (themeToggle) {
 // ۳. تولید ذرات نوری لوگوی صفحه اصلی
 const dustGroup = document.getElementById('dust-group');
 if (dustGroup) {
-    const colors = ['#00e5ff', '#3b82f6', '#ffffff', '#6366f1'];
+    const colors = ['#00ff66', '#ff5500', '#ffffff', '#00e5ff'];
 
     for (let i = 0; i < 90; i++) {
         const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
@@ -65,7 +64,7 @@ if (dustGroup) {
     }
 }
 
-// ۴. ساختار اسکرول GSAP (فقط در صورت وجود ScrollTrigger و پنل‌ها اجرا می‌شود)
+// ۴. ساختار اسکرول GSAP
 if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -171,15 +170,23 @@ function filterCategory(category, btn) {
     });
 }
 
-// ۸. تعاملات درخت FAQ
+// ۸. تعاملات درخت FAQ (باز و بسته شدن کامل شاخه‌ها و سوالات)
 function toggleBranch(element) {
     const branch = element.parentElement;
-    if (branch) branch.classList.toggle('open');
+    if (branch) {
+        branch.classList.toggle('open');
+        const icon = branch.querySelector('.branch-toggle-icon');
+        if (icon) {
+            icon.textContent = branch.classList.contains('open') ? '−' : '+';
+        }
+    }
 }
 
 function toggleAnswer(element) {
     const nodeItem = element.parentElement;
-    if (nodeItem) nodeItem.classList.toggle('active');
+    if (nodeItem) {
+        nodeItem.classList.toggle('active');
+    }
 }
 
 // ==================== پایگاه داده اطلاعات بازی‌ها ====================
@@ -357,84 +364,4 @@ if (registerForm) {
         e.preventDefault();
         window.location.href = 'dashboard.html';
     });
-}
-
-// ==================== سنجش زنده سختی رمز عبور ====================
-const regPassword = document.getElementById('regPassword');
-if (regPassword) {
-    const strengthBar = document.getElementById('strengthBar');
-    const strengthText = document.getElementById('strengthText');
-
-    const ruleLength = document.getElementById('ruleLength');
-    const ruleLower = document.getElementById('ruleLower');
-    const ruleUpper = document.getElementById('ruleUpper');
-    const ruleSymbol = document.getElementById('ruleSymbol');
-
-    regPassword.addEventListener('input', () => {
-        const val = regPassword.value;
-        let score = 0;
-
-        const isLengthValid = val.length >= 8;
-        updateRuleState(ruleLength, isLengthValid);
-        if (isLengthValid) score++;
-
-        const isLowerValid = /[a-z]/.test(val);
-        updateRuleState(ruleLower, isLowerValid);
-        if (isLowerValid) score++;
-
-        const isUpperValid = /[A-Z]/.test(val);
-        updateRuleState(ruleUpper, isUpperValid);
-        if (isUpperValid) score++;
-
-        const isSymbolValid = /[0-9!@#$%^&*(),.?":{}|<>]/.test(val);
-        updateRuleState(ruleSymbol, isSymbolValid);
-        if (isSymbolValid) score++;
-
-        if (strengthBar && strengthText) {
-            switch (score) {
-                case 0:
-                    strengthBar.style.width = '0%';
-                    strengthBar.style.backgroundColor = '#ff4757';
-                    strengthText.textContent = 'خیلی ضعیف';
-                    strengthText.style.color = '#ff4757';
-                    break;
-                case 1:
-                    strengthBar.style.width = '25%';
-                    strengthBar.style.backgroundColor = '#ff4757';
-                    strengthText.textContent = 'ضعیف';
-                    strengthText.style.color = '#ff4757';
-                    break;
-                case 2:
-                    strengthBar.style.width = '50%';
-                    strengthBar.style.backgroundColor = '#ffa502';
-                    strengthText.textContent = 'متوسط';
-                    strengthText.style.color = '#ffa502';
-                    break;
-                case 3:
-                    strengthBar.style.width = '75%';
-                    strengthBar.style.backgroundColor = '#2ed573';
-                    strengthText.textContent = 'خوب';
-                    strengthText.style.color = '#2ed573';
-                    break;
-                case 4:
-                    strengthBar.style.width = '100%';
-                    strengthBar.style.backgroundColor = '#00ffaa';
-                    strengthText.textContent = 'عالی و فوق‌العاده قوی';
-                    strengthText.style.color = '#00ffaa';
-                    break;
-            }
-        }
-    });
-}
-
-function updateRuleState(element, isValid) {
-    if (!element) return;
-    const icon = element.querySelector('.rule-icon');
-    if (isValid) {
-        element.classList.add('valid');
-        if (icon) icon.textContent = '✓';
-    } else {
-        element.classList.remove('valid');
-        if (icon) icon.textContent = '✕';
-    }
 }
