@@ -44,7 +44,7 @@
     <div class="scroll-container">
         <div class="zoom-wrapper">
             
-            <!-- Panel 0: لوگوی اصلی -->
+            <!-- Panel 0: لوگوی اصلی صاعقه و هسته انرژی -->
             <section class="panel hero-section">
                 <div class="logo-box">
                     <svg class="dns-logo-svg" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -75,19 +75,20 @@
                 <div class="content">
                     <span class="badge">ULTRA LOW LATENCY</span>
                     <h1>سرعت بی‌نهایت، پینگ تک‌رقمی</h1>
-                    <p>عبور هوشمند از تحریم‌ها و ثبت کمترین پینگ ممکن در بازی‌های آنلاین</p>
+                    <p>عبور هوشمند از تحریم‌ها و ثبت کمترین پینگ ممکن در تمامی بازی‌های آنلاین رقابتی</p>
+                    
                     <div class="grid">
                         <div class="card">
-                            <h3>کاهش پینگ تا ۴۰٪</h3>
-                            <p>مسیریابی هوشمند به نزدیک‌ترین سرورهای بازی در اروپا و خاورمیانه</p>
+                            <h3>⚡ کاهش پینگ تا ۴۰٪</h3>
+                            <p>مسیریابی هوشمند و اتصالات اختصاصی به نزدیک‌ترین و خلوت‌ترین سرورهای بازی در اروپا و خاورمیانه برای دسترسی به بهترین پینگ ممکن.</p>
                         </div>
                         <div class="card">
-                            <h3>بدون قطعی و Loss</h3>
-                            <p>پایداری ۱۰۰ درصدی اتصال در حین رقابت‌های حساس آنلاین</p>
+                            <h3>🛡️ پایداری کامل بدون Packet Loss</h3>
+                            <p>جلوگیری از افت پکت و قطع شدن‌های ناگهانی در حساس‌ترین لحظات رقابت‌های آنلاین و تورنمنت‌های حرفه‌ای.</p>
                         </div>
                         <div class="card">
-                            <h3>سازگار با تمام دستگاه‌ها</h3>
-                            <p>پشتیبانی کامل از PC، کنسول‌های بازی (PS5 / Xbox) و موبایل</p>
+                            <h3>🌐 سازگار با تمام دستگاه‌ها</h3>
+                            <p>پشتیبانی کامل و یکپارچه از کامپیوتر (PC)، کنسول‌های بازی (PlayStation 5 / Xbox) و گوشی‌های موبایل بدون نیاز به تنظیمات سخت‌افزاری پیچیده.</p>
                         </div>
                     </div>
                 </div>
@@ -381,7 +382,7 @@
                 </div>
             </section>
 
-            <!-- Panel 7: پشتیبانی با آیکون‌های جدید تلگرام، اینستاگرام و دیسکورد -->
+            <!-- Panel 7: پشتیبانی با دکمه‌های اجتماعی -->
             <section class="panel support-section">
                 <div class="content">
                     <h2>پشتیبانی ۲۴ ساعته</h2>
@@ -406,59 +407,63 @@
         </div>
     </div>
 
-    <!-- مودال‌ها -->
+    <!-- مودال اطلاعات بازی -->
     <div class="game-modal-overlay" id="gameModal">
         <div class="game-modal">
             <button class="close-modal" id="closeGameBtn">&times;</button>
-            <div class="game-modal-header">
-                <div class="game-modal-icon" id="gIcon">🎯</div>
+            <div class="game-modal-header" style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                <div class="game-modal-icon" id="gIcon" style="font-size: 2.5rem;">🎯</div>
                 <div>
-                    <h2 id="gTitle">Call of Duty: Warzone 2.0</h2>
-                    <span class="badge" id="gGenre">Shooter / Battle Royale</span>
+                    <h2 id="gTitle" style="margin: 0; font-size: 1.4rem;">Call of Duty: Warzone 2.0</h2>
+                    <span class="badge" id="gGenre" style="display: inline-block; margin-top: 5px;">Shooter / Battle Royale</span>
                 </div>
             </div>
-            <div class="game-stats-grid">
-                <div class="stat-box"><span class="stat-label">🛠️ سازنده</span><strong id="gDev">Infinity Ward</strong></div>
-                <div class="stat-box"><span class="stat-label">🏢 ناشر</span><strong id="gPublisher">Activision</strong></div>
-                <div class="stat-box"><span class="stat-label">👥 آنلاین</span><strong id="gPlayers">+450k</strong></div>
-                <div class="stat-box"><span class="stat-label">⚡ پینگ</span><strong id="gPing" style="color: #00ff66;">32 ms</strong></div>
+            <div class="game-stats-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px;">
+                <div class="stat-box" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px;"><span class="stat-label" style="font-size: 0.8rem; color: #888;">🛠️ سازنده</span><br><strong id="gDev">Infinity Ward</strong></div>
+                <div class="stat-box" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px;"><span class="stat-label" style="font-size: 0.8rem; color: #888;">🏢 ناشر</span><br><strong id="gPublisher">Activision</strong></div>
+                <div class="stat-box" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px;"><span class="stat-label" style="font-size: 0.8rem; color: #888;">👥 آنلاین</span><br><strong id="gPlayers">+450k</strong></div>
+                <div class="stat-box" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px;"><span class="stat-label" style="font-size: 0.8rem; color: #888;">⚡ پینگ</span><br><strong id="gPing" style="color: #00ff66;">32 ms</strong></div>
             </div>
-            <div class="game-description">
-                <h3>درباره بازی</h3>
-                <p id="gDesc">توضیحات بازی...</p>
+            <div class="game-description" style="margin-bottom: 20px;">
+                <h3 style="font-size: 1.1rem; margin-bottom: 8px;">درباره بازی</h3>
+                <p id="gDesc" style="font-size: 0.9rem; color: #94a3b8; line-height: 1.6;">توضیحات بازی...</p>
             </div>
-            <button class="auth-submit-btn" onclick="document.getElementById('gameModal').classList.remove('active'); jumpToPanel(3);">تست و خرید اشتراک</button>
+            <button class="auth-submit-btn" style="width: 100%;" onclick="document.getElementById('gameModal').classList.remove('active'); jumpToPanel(3);">تست و خرید اشتراک</button>
         </div>
     </div>
 
+    <!-- مودال ورود / ثبت‌نام -->
     <div class="auth-modal-overlay" id="authModal">
         <div class="auth-modal">
             <button class="close-modal" id="closeAuthBtn">&times;</button>
-            <div class="auth-tabs">
-                <button class="tab-btn active" id="loginTab">ورود</button>
-                <button class="tab-btn" id="registerTab">ثبت‌نام</button>
+            
+            <div class="auth-tabs" style="display: flex; gap: 10px; margin-bottom: 20px;">
+                <button class="filter-btn active" id="loginTab" style="flex: 1; padding: 10px;">ورود</button>
+                <button class="filter-btn" id="registerTab" style="flex: 1; padding: 10px;">ثبت‌نام</button>
             </div>
-            <form class="auth-form active" id="loginForm">
-                <div class="input-group">
-                    <label>ایمیل یا شماره همراه</label>
-                    <input type="text" placeholder="example@gmail.com" required>
+
+            <form class="auth-form active" id="loginForm" style="display: flex; flex-direction: column; gap: 15px;">
+                <div class="input-group" style="display: flex; flex-direction: column; gap: 5px;">
+                    <label style="font-size: 0.85rem;">ایمیل یا شماره همراه</label>
+                    <input type="text" placeholder="example@gmail.com" style="padding: 10px; border-radius: 8px; background: rgba(0,0,0,0.3); border: 1px solid rgba(0,255,102,0.3); color: #fff;" required>
                 </div>
-                <div class="input-group">
-                    <label>رمز عبور</label>
-                    <input type="password" placeholder="••••••••" required>
+                <div class="input-group" style="display: flex; flex-direction: column; gap: 5px;">
+                    <label style="font-size: 0.85rem;">رمز عبور</label>
+                    <input type="password" placeholder="••••••••" style="padding: 10px; border-radius: 8px; background: rgba(0,0,0,0.3); border: 1px solid rgba(0,255,102,0.3); color: #fff;" required>
                 </div>
-                <button type="submit" class="auth-submit-btn">ورود به حساب</button>
+                <button type="submit" class="auth-submit-btn" style="width: 100%; margin-top: 10px;">ورود به حساب</button>
             </form>
-            <form class="auth-form" id="registerForm">
-                <div class="input-group">
-                    <label>ایمیل</label>
-                    <input type="email" placeholder="example@gmail.com" required>
+
+            <form class="auth-form" id="registerForm" style="display: none; flex-direction: column; gap: 15px;">
+                <div class="input-group" style="display: flex; flex-direction: column; gap: 5px;">
+                    <label style="font-size: 0.85rem;">ایمیل</label>
+                    <input type="email" placeholder="example@gmail.com" style="padding: 10px; border-radius: 8px; background: rgba(0,0,0,0.3); border: 1px solid rgba(0,255,102,0.3); color: #fff;" required>
                 </div>
-                <div class="input-group">
-                    <label>رمز عبور</label>
-                    <input type="password" id="regPassword" placeholder="رمز عبور" required>
+                <div class="input-group" style="display: flex; flex-direction: column; gap: 5px;">
+                    <label style="font-size: 0.85rem;">رمز عبور</label>
+                    <input type="password" id="regPassword" placeholder="رمز عبور" style="padding: 10px; border-radius: 8px; background: rgba(0,0,0,0.3); border: 1px solid rgba(0,255,102,0.3); color: #fff;" required>
                 </div>
-                <button type="submit" class="auth-submit-btn">ثبت‌نام</button>
+                <button type="submit" class="auth-submit-btn" style="width: 100%; margin-top: 10px;">ثبت‌نام</button>
             </form>
         </div>
     </div>

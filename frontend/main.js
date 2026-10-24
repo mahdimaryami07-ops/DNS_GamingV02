@@ -189,7 +189,7 @@ function toggleAnswer(element) {
     }
 }
 
-// ==================== پایگاه داده اطلاعات بازی‌ها ====================
+// پایگاه داده اطلاعات بازی‌ها
 const gamesData = {
     warzone: {
         title: "Call of Duty: Warzone 2.0",
@@ -273,7 +273,7 @@ const gamesData = {
     }
 };
 
-// ==================== مدیریت مودال توضیحات بازی ====================
+// مدیریت مودال توضیحات بازی
 const gameModal = document.getElementById('gameModal');
 const closeGameBtn = document.getElementById('closeGameBtn');
 
@@ -316,7 +316,7 @@ if (gameModal) {
     });
 }
 
-// ==================== مدیریت مودال ورود و انتقال به داشبورد ====================
+// مدیریت مودال ورود و انتقال به داشبورد
 const authModal = document.getElementById('authModal');
 const openAuthBtn = document.getElementById('openAuthBtn');
 const closeAuthBtn = document.getElementById('closeAuthBtn');
@@ -339,15 +339,15 @@ if (openAuthBtn && authModal) {
         loginTab.addEventListener('click', () => {
             loginTab.classList.add('active');
             registerTab.classList.remove('active');
-            loginForm.classList.add('active');
-            registerForm.classList.remove('active');
+            loginForm.style.display = 'flex';
+            registerForm.style.display = 'none';
         });
 
         registerTab.addEventListener('click', () => {
             registerTab.classList.add('active');
             loginTab.classList.remove('active');
-            registerForm.classList.add('active');
-            loginForm.classList.remove('active');
+            registerForm.style.display = 'flex';
+            loginForm.style.display = 'none';
         });
     }
 }
