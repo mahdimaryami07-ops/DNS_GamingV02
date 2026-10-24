@@ -3,23 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gaming DNS | نسل جدید سرورهای گیمینگ</title>
+    <title>Gaming DNS | نسل جدید سرورهای گیمینگ نئونی</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
-    <!-- لایه‌های پس‌زمینه فضایی -->
     <div class="space-nebula"></div>
     <div id="dynamic-stars"></div>
 
-    <!-- هدر ثابت بالا -->
     <header class="site-header">
         <div class="header-right">
             <div class="fixed-logo" onclick="jumpToPanel(0)" style="cursor: pointer;">
                 <svg viewBox="0 0 50 50" width="42" height="42" fill="none">
-                    <circle cx="25" cy="25" r="20" stroke="#00e5ff" stroke-width="3"/>
-                    <path d="M25 10L17 23H24L21 38L33 21H26L25 10Z" fill="#00e5ff"/>
+                    <circle cx="25" cy="25" r="20" stroke="#00ff66" stroke-width="3"/>
+                    <path d="M25 10L17 23H24L21 38L33 21H26L25 10Z" fill="#00ff66"/>
                 </svg>
             </div>
             <span class="logo-title">GAMING DNS</span>
@@ -44,24 +42,23 @@
     <div class="scroll-container">
         <div class="zoom-wrapper">
             
-            <!-- Panel 0: لوگوی اصلی صاعقه و هسته انرژی -->
             <section class="panel hero-section">
                 <div class="logo-box">
                     <svg class="dns-logo-svg" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <defs>
                             <radialGradient id="coreGrad" cx="50%" cy="50%" r="50%">
-                                <stop offset="0%" stop-color="#00e5ff" stop-opacity="1"/>
-                                <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.2"/>
+                                <stop offset="0%" stop-color="#00ff66" stop-opacity="1"/>
+                                <stop offset="100%" stop-color="#ff5500" stop-opacity="0.2"/>
                             </radialGradient>
                             <linearGradient id="boltGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                                 <stop offset="0%" stop-color="#ffffff"/>
-                                <stop offset="50%" stop-color="#00e5ff"/>
-                                <stop offset="100%" stop-color="#6366f1"/>
+                                <stop offset="50%" stop-color="#00ff66"/>
+                                <stop offset="100%" stop-color="#ff5500"/>
                             </linearGradient>
                         </defs>
 
-                        <circle class="pulse-ring r1" cx="200" cy="200" r="110" stroke="#3b82f6" stroke-width="2" stroke-dasharray="15 8" fill="none"/>
-                        <circle class="pulse-ring r2" cx="200" cy="200" r="80" stroke="#00e5ff" stroke-width="3" stroke-dasharray="6 6" fill="none"/>
+                        <circle class="pulse-ring r1" cx="200" cy="200" r="110" stroke="#ff5500" stroke-width="2" stroke-dasharray="15 8" fill="none"/>
+                        <circle class="pulse-ring r2" cx="200" cy="200" r="80" stroke="#00ff66" stroke-width="3" stroke-dasharray="6 6" fill="none"/>
                         <circle class="energy-core" cx="200" cy="200" r="45" fill="url(#coreGrad)"/>
                         <path class="lightning-bolt" d="M215 70L135 195H195L175 330L265 175H205L215 70Z" fill="url(#boltGrad)"/>
 
@@ -70,7 +67,6 @@
                 </div>
             </section>
 
-            <!-- Panel 1: ویژگی‌ها -->
             <section class="panel features-section">
                 <div class="content">
                     <span class="badge">ULTRA LOW LATENCY</span>
@@ -93,22 +89,20 @@
                 </div>
             </section>
 
-            <!-- Panel 2: بازی‌های پشتیبانی‌شده -->
             <section class="panel games-section">
                 <div class="content">
                     <h2>بازی‌های پشتیبانی‌شده</h2>
-                    <p>پشتیبانی کامل و پینگ بهینه شده برای تمام بازی‌های تحریم‌شده و رقابتی (روی بازی‌ها کلیک کنید)</p>
+                    <p>پشتیبانی کامل و پینگ بهینه شده برای تمام بازی‌های تحریم‌شده و رقابتی</p>
 
                     <div class="games-header">
                         <div class="search-box">
-                            <input type="text" id="gameSearch" placeholder="جستجوی بازی (مثلاً Warzone, FC 24)..." onkeyup="filterGames()">
+                            <input type="text" id="gameSearch" placeholder="جستجوی بازی..." onkeyup="filterGames()">
                         </div>
                         <div class="game-filters">
                             <button class="filter-btn active" onclick="filterCategory('all', this)">همه</button>
                             <button class="filter-btn" onclick="filterCategory('fps', this)">شوتر / FPS</button>
                             <button class="filter-btn" onclick="filterCategory('sports', this)">ورزشی</button>
                             <button class="filter-btn" onclick="filterCategory('battle', this)">بتل رویال</button>
-                            <button class="filter-btn" onclick="filterCategory('moba', this)">MOBA</button>
                         </div>
                     </div>
 
@@ -148,71 +142,10 @@
                                 <span class="ping-val">35 ms</span>
                             </div>
                         </div>
-
-                        <div class="cyber-game-card" data-id="pubg" data-category="battle fps">
-                            <div class="game-icon">📱</div>
-                            <div class="game-info">
-                                <h3>PUBG Mobile</h3>
-                                <span class="genre">Mobile Battle Royale</span>
-                            </div>
-                            <div class="ping-badge">
-                                <span class="ping-dot"></span>
-                                <span class="ping-val">40 ms</span>
-                            </div>
-                        </div>
-
-                        <div class="cyber-game-card" data-id="apex" data-category="battle fps">
-                            <div class="game-icon">🛡️</div>
-                            <div class="game-info">
-                                <h3>Apex Legends</h3>
-                                <span class="genre">Hero Shooter</span>
-                            </div>
-                            <div class="ping-badge">
-                                <span class="ping-dot"></span>
-                                <span class="ping-val">38 ms</span>
-                            </div>
-                        </div>
-
-                        <div class="cyber-game-card" data-id="lol" data-category="moba">
-                            <div class="game-icon">⚔️</div>
-                            <div class="game-info">
-                                <h3>League of Legends</h3>
-                                <span class="genre">MOBA Strategy</span>
-                            </div>
-                            <div class="ping-badge">
-                                <span class="ping-dot"></span>
-                                <span class="ping-val">42 ms</span>
-                            </div>
-                        </div>
-
-                        <div class="cyber-game-card" data-id="rainbow" data-category="fps">
-                            <div class="game-icon">💥</div>
-                            <div class="game-info">
-                                <h3>Rainbow Six Siege</h3>
-                                <span class="genre">Tactical FPS</span>
-                            </div>
-                            <div class="ping-badge">
-                                <span class="ping-dot"></span>
-                                <span class="ping-val">34 ms</span>
-                            </div>
-                        </div>
-
-                        <div class="cyber-game-card" data-id="rocket" data-category="sports">
-                            <div class="game-icon">🚗</div>
-                            <div class="game-info">
-                                <h3>Rocket League</h3>
-                                <span class="genre">Action / Sports</span>
-                            </div>
-                            <div class="ping-badge">
-                                <span class="ping-dot"></span>
-                                <span class="ping-val">29 ms</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Panel 3: تعرفه‌ها -->
             <section class="panel pricing-section">
                 <div class="content">
                     <h2>پلن‌های اشتراک گیمینگ</h2>
@@ -220,273 +153,45 @@
                         <div class="price-card">
                             <span class="plan-name">یک ماهه</span>
                             <div class="price">۱۹۰ <span>تومان</span></div>
-                            <ul>
-                                <li>پشتیبانی از تمام بازی‌ها</li>
-                                <li>سرور اختصاصی آلمان</li>
-                                <li>پشتیبانی ۲۴/۷ دیسکورد/تلگرام</li>
-                            </ul>
                             <button class="buy-btn">خرید آنلاین</button>
                         </div>
                         <div class="price-card featured">
-                            <span class="badge-pop">پیشنهاد ویژه</span>
                             <span class="plan-name">سه ماهه VIP</span>
                             <div class="price">۴۵۰ <span>تومان</span></div>
-                            <ul>
-                                <li>پورت ۱Gbps اختصاصی</li>
-                                <li>سرور ترکیبی آلمان + ترکیه</li>
-                                <li>ای پی کاملا ثابت و تمیز</li>
-                            </ul>
                             <button class="buy-btn">خرید آنلاین</button>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Panel 4: دانلود نرم‌افزار -->
-            <section class="panel download-section">
-                <div class="content">
-                    <h2>دانلود کلاینت اختصاصی DNS</h2>
-                    <p>تنظیم خودکار DNS تنها با یک کلیک بدون نیاز به تنظیمات دستی</p>
-                    <div class="grid download-grid">
-                        <div class="card dl-card">
-                            <div class="dl-icon">💻</div>
-                            <h3>نسخه ویندوز</h3>
-                            <span class="ver">v2.4.0 (Windows 10/11)</span>
-                            <button class="dl-btn">دانلود مستقیم (.exe)</button>
-                        </div>
-                        <div class="card dl-card">
-                            <div class="dl-icon">📱</div>
-                            <h3>نسخه اندروید</h3>
-                            <span class="ver">v1.8.2 (Android 8+)</span>
-                            <button class="dl-btn">دانلود APK مستقیم</button>
-                        </div>
-                        <div class="card dl-card">
-                            <div class="dl-icon">🍎</div>
-                            <h3>نسخه iOS / Mac</h3>
-                            <span class="ver">پروفایل اختصاصی DNS</span>
-                            <button class="dl-btn">دریافت پروفایل</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Panel 5: سوالات متداول -->
-            <section class="panel faq-section">
-                <div class="content faq-content">
-                    <h2>سوالات متداول</h2>
-                    <p>برای نمایش پاسخ‌ها، روی هر شاخه و سوال کلیک کنید</p>
-
-                    <div class="faq-tree-container">
-                        <div class="tree-root-node">
-                            <span>Gaming DNS Core</span>
-                        </div>
-
-                        <div class="tree-branches">
-                            <div class="tree-branch">
-                                <div class="branch-header" onclick="toggleBranch(this)">
-                                    <span class="branch-icon">⚡</span>
-                                    <span class="branch-title">عملکرد و پینگ</span>
-                                    <span class="branch-toggle-icon">+</span>
-                                </div>
-                                <div class="branch-nodes">
-                                    <div class="node-item">
-                                        <div class="node-question" onclick="toggleAnswer(this)">
-                                            <span>چگونه پینگ بازی‌ها کاهش می‌یابد؟</span>
-                                            <span class="q-arrow">▼</span>
-                                        </div>
-                                        <div class="node-answer">
-                                            <p>با حذف گره‌های واسطه مخابراتی و مسیریابی مستقیم شبکه به نزدیک‌ترین دیتاسنترهای اروپایی (آلمان، ترکیه)، مسیر پاسخ‌دهی کوتاه‌تر شده و پینگ تا ۴۰٪ کاهش می‌یابد.</p>
-                                        </div>
-                                    </div>
-                                    <div class="node-item">
-                                        <div class="node-question" onclick="toggleAnswer(this)">
-                                            <span>آیا Packet Loss صفر می‌شود؟</span>
-                                            <span class="q-arrow">▼</span>
-                                        </div>
-                                        <div class="node-answer">
-                                            <p>بله! سرورهای ما مجهز به سیستم Anti-Packet-Loss هستند که از گم شدن پکت‌ها در عبور از خطوط بین‌المللی جلوگیری می‌کنند.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="tree-branch">
-                                <div class="branch-header" onclick="toggleBranch(this)">
-                                    <span class="branch-icon">🔒</span>
-                                    <span class="branch-title">امنیت و تحریم</span>
-                                    <span class="branch-toggle-icon">+</span>
-                                </div>
-                                <div class="branch-nodes">
-                                    <div class="node-item">
-                                        <div class="node-question" onclick="toggleAnswer(this)">
-                                            <span>آیا خطر بن شدن اکانت وجود دارد؟</span>
-                                            <span class="q-arrow">▼</span>
-                                        </div>
-                                        <div class="node-answer">
-                                            <p>خیر، سرویس ما یک DNS اختصاصی و قانونی گیمینگ است و هیچ‌گونه تغییری در فایل‌های بازی ایجاد نمی‌کند، بنابراین کاملاً مطمئن و بدون خطر بن است.</p>
-                                        </div>
-                                    </div>
-                                    <div class="node-item">
-                                        <div class="node-question" onclick="toggleAnswer(this)">
-                                            <span>کدام تحریم‌ها رفع می‌شوند؟</span>
-                                            <span class="q-arrow">▼</span>
-                                        </div>
-                                        <div class="node-answer">
-                                            <p>تمامی تحریم‌های ریجن ایران در بازی‌های اکتیویژن (Warzone)، الکترونیک آرتز (FC 24 / Apex)، راپوت گیمز (Valorant) و یوبی‌سافت کاملاً دور زده می‌شوند.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="tree-branch">
-                                <div class="branch-header" onclick="toggleBranch(this)">
-                                    <span class="branch-icon">🎮</span>
-                                    <span class="branch-title">نصب و اتصال</span>
-                                    <span class="branch-toggle-icon">+</span>
-                                </div>
-                                <div class="branch-nodes">
-                                    <div class="node-item">
-                                        <div class="node-question" onclick="toggleAnswer(this)">
-                                            <span>روی کنسول‌های PS5 و Xbox چگونه نصب می‌شود؟</span>
-                                            <span class="q-arrow">▼</span>
-                                        </div>
-                                        <div class="node-answer">
-                                            <p>تنها کافیست در بخش تنظیمات شبکه کنسول (Network Settings)، دو آدرس IP ارائه شده توسط کلاینت یا پنل خود را در بخش Primary و Secondary DNS وارد کنید.</p>
-                                        </div>
-                                    </div>
-                                    <div class="node-item">
-                                        <div class="node-question" onclick="toggleAnswer(this)">
-                                            <span>آیا نیازی به روتر خاصی هست؟</span>
-                                            <span class="q-arrow">▼</span>
-                                        </div>
-                                        <div class="node-answer">
-                                            <p>خیر، نرم‌افزار هوشمند ویندوز و اندروید ما با یک کلیک DNS را ست می‌کند و نیازی به کانفیگ روتر نخواهید داشت.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Panel 6: درباره ما -->
-            <section class="panel about-section">
-                <div class="content">
-                    <h2>درباره GAMING DNS</h2>
-                    <p>ما مجموعه‌ای از گیمرهای حرفه‌ای و مهندسان شبکه هستیم که با هدف حذف محدودیت‌ها و ثبت کمترین پینگ ممکن، شبکه اختصاصی زیرساخت DNS گیمینگ را راه‌اندازی کرده‌ایم. سرورهای ما بر روی داتاسنترهای اختصاصی اروپایی مستقر شده‌اند تا مسیر داده‌های بازی شما بدون گره‌های اضافه منتقل شود.</p>
-                </div>
-            </section>
-
-            <!-- Panel 7: پشتیبانی -->
             <section class="panel support-section">
                 <div class="content">
                     <h2>پشتیبانی ۲۴ ساعته</h2>
-                    <p>در صورت نیاز به راهنمایی یا تست رایگان، با تیم پشتیبانی ما در ارتباط باشید</p>
-                    <div class="support-buttons">
-                        <a href="#" class="supp-btn telegram">ارتباط در تلگرام</a>
-                        <a href="#" class="supp-btn discord">سرور دیسکورد</a>
-                    </div>
+                    <p>در صورت نیاز به راهنمایی با تیم ما در ارتباط باشید</p>
                 </div>
             </section>
 
         </div>
     </div>
 
-    <!-- مودال اطلاعات بازی (کاملاً بیرون از پنل‌ها قرار دارد) -->
+    <!-- مودال‌ها -->
     <div class="game-modal-overlay" id="gameModal">
         <div class="game-modal">
             <button class="close-modal" id="closeGameBtn">&times;</button>
-            <div class="game-modal-header">
-                <div class="game-modal-icon" id="gIcon">🎯</div>
-                <div>
-                    <h2 id="gTitle">Call of Duty: Warzone 2.0</h2>
-                    <span class="badge" id="gGenre">Shooter / Battle Royale</span>
-                </div>
-            </div>
-
-            <div class="game-stats-grid">
-                <div class="stat-box">
-                    <span class="stat-label">🛠️ استودیو سازنده</span>
-                    <strong id="gDev">Raven Software / Infinity Ward</strong>
-                </div>
-                <div class="stat-box">
-                    <span class="stat-label">🏢 ناشر</span>
-                    <strong id="gPublisher">Activision</strong>
-                </div>
-                <div class="stat-box">
-                    <span class="stat-label">👥 پلیرهای فعال آنلاین</span>
-                    <strong id="gPlayers">+450,000 روزانه</strong>
-                </div>
-                <div class="stat-box">
-                    <span class="stat-label">⚡ پینگ میانگین با DNS</span>
-                    <strong id="gPing" style="color: #00ffaa;">32 ms (بدون Packet Loss)</strong>
-                </div>
-            </div>
-
-            <div class="game-description">
-                <h3>درباره این بازی و بهینه‌سازی DNS</h3>
-                <p id="gDesc">محتوای توضیحات بازی در اینجا قرار می‌گیرد...</p>
-            </div>
-
-            <button class="auth-submit-btn" onclick="document.getElementById('gameModal').classList.remove('active'); jumpToPanel(3);">تست و خرید اشتراک مربوطه</button>
+            <h2 id="gTitle">بازی</h2>
+            <p id="gDesc">توضیحات</p>
         </div>
     </div>
 
-    <!-- مودال ورود / ثبت‌نام -->
     <div class="auth-modal-overlay" id="authModal">
         <div class="auth-modal">
             <button class="close-modal" id="closeAuthBtn">&times;</button>
-            
-            <div class="auth-tabs">
-                <button class="tab-btn active" id="loginTab">ورود به حساب</button>
-                <button class="tab-btn" id="registerTab">ثبت‌نام حساب جدید</button>
-            </div>
-
             <form class="auth-form active" id="loginForm">
                 <div class="input-group">
-                    <label>ایمیل یا شماره همراه</label>
-                    <input type="text" placeholder="example@gmail.com یا 09123456789" required>
-                </div>
-                <div class="input-group">
-                    <label>رمز عبور</label>
-                    <input type="password" placeholder="••••••••" required>
-                </div>
-                <button type="submit" class="auth-submit-btn">ورود به حساب</button>
-            </form>
-
-            <form class="auth-form" id="registerForm">
-                <div class="input-group">
                     <label>ایمیل</label>
-                    <input type="email" placeholder="example@gmail.com" required>
+                    <input type="text" placeholder="example@gmail.com" required>
                 </div>
-                <div class="input-group">
-                    <label>شماره تلفن همراه</label>
-                    <input type="tel" id="regPhone" placeholder="09123456789" pattern="^09[0-9]{9}$" dir="ltr" style="text-align: right;" required>
-                </div>
-                <div class="input-group">
-                    <label>رمز عبور جدید</label>
-                    <input type="password" id="regPassword" placeholder="رمز عبور خود را وارد کنید" required>
-                </div>
-
-                <div class="strength-meter-box">
-                    <div class="strength-label">
-                        <span>سختی رمز عبور:</span>
-                        <strong id="strengthText">خیلی ضعیف</strong>
-                    </div>
-                    <div class="strength-bar-bg">
-                        <div class="strength-bar-fill" id="strengthBar"></div>
-                    </div>
-
-                    <ul class="password-rules">
-                        <li id="ruleLength"><span class="rule-icon">✕</span> حداقل ۸ کاراکتر</li>
-                        <li id="ruleLower"><span class="rule-icon">✕</span> حداقل یک حرف کوچک (a-z)</li>
-                        <li id="ruleUpper"><span class="rule-icon">✕</span> حداقل یک حرف بزرگ (A-Z)</li>
-                        <li id="ruleSymbol"><span class="rule-icon">✕</span> حداقل یک عدد یا سیمبل (@#$%^&*)</li>
-                    </ul>
-                </div>
-
-                <button type="submit" class="auth-submit-btn">ایجاد حساب گیمینگ</button>
+                <button type="submit" class="auth-submit-btn">ورود به پنل</button>
             </form>
         </div>
     </div>
