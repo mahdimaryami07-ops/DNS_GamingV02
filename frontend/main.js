@@ -1,32 +1,38 @@
-gsap.registerPlugin(ScrollTrigger);
+// ۱. تولید ستاره‌های پویای پس‌زمینه (فعال در تمام صفحات)
+function initDynamicStars() {
+    const starsContainer = document.getElementById('dynamic-stars');
+    const starCount = 180;
 
-// ۱. تولید ستاره‌های پویای پس‌زمینه
-const starsContainer = document.getElementById('dynamic-stars');
-const starCount = 180;
+    if (starsContainer) {
+        starsContainer.innerHTML = ''; // پاکسازی احتمالی قبلی
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star-dot');
+            
+            const x = Math.random() * 100;
+            const y = Math.random() * 100;
+            const size = Math.random() * 2.5 + 1;
+            const duration = Math.random() * 3 + 1.5;
+            const delay = Math.random() * 3;
 
-if (starsContainer) {
-    for (let i = 0; i < starCount; i++) {
-        const star = document.createElement('div');
-        star.classList.add('star-dot');
-        
-        const x = Math.random() * 100;
-        const y = Math.random() * 100;
-        const size = Math.random() * 2.5 + 1;
-        const duration = Math.random() * 3 + 1.5;
-        const delay = Math.random() * 3;
+            star.style.left = `${x}vw`;
+            star.style.top = `${y}vh`;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.setProperty('--duration', `${duration}s`);
+            star.style.animationDelay = `${delay}s`;
 
-        star.style.left = `${x}vw`;
-        star.style.top = `${y}vh`;
-        star.style.width = `${size}px`;
-        star.style.height = `${size}px`;
-        star.style.setProperty('--duration', `${duration}s`);
-        star.style.animationDelay = `${delay}s`;
-
-        starsContainer.appendChild(star);
+            starsContainer.appendChild(star);
+        }
     }
 }
 
-// ۲. سوئیچ تم تاریک و روشن
+// اجرای ساخت ستاره‌ها پس از لود شدن DOM
+document.addEventListener('DOMContentLoaded', () => {
+    initDynamicStars();
+});
+
+// ۲. سوئیچ تم تاریک و روشن (فعال در صفحه اصلی و داشبورد)
 const themeToggle = document.getElementById('themeToggle');
 if (themeToggle) {
     themeToggle.addEventListener('click', () => {
@@ -35,7 +41,7 @@ if (themeToggle) {
     });
 }
 
-// ۳. تولید ذرات نوری لوگو
+// ۳. تولید ذرات نوری لوگوی صفحه اصلی
 const dustGroup = document.getElementById('dust-group');
 if (dustGroup) {
     const colors = ['#00e5ff', '#3b82f6', '#ffffff', '#6366f1'];
@@ -59,58 +65,63 @@ if (dustGroup) {
     }
 }
 
-// ۴. ساختار اسکرول GSAP + روشن شدن دقیق آیتم منو
-const panels = gsap.utils.toArray('.panel');
-const navLinks = document.querySelectorAll('.nav-menu a');
+// ۴. ساختار اسکرول GSAP (فقط در صورت وجود ScrollTrigger و پنل‌ها اجرا می‌شود)
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
 
-function updateActiveNav(activeIndex) {
-    navLinks.forEach(link => {
-        const linkIndex = parseInt(link.getAttribute('data-index'));
-        if (linkIndex === activeIndex) {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
-        }
-    });
-}
+    const panels = gsap.utils.toArray('.panel');
+    const navLinks = document.querySelectorAll('.nav-menu a');
 
-if (panels.length > 0) {
-    panels.forEach((panel, i) => {
-        gsap.set(panel, {
-            z: -i * 2000,
-            opacity: i === 0 ? 1 : 0
-        });
-    });
-
-    const tl = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".scroll-container",
-            start: "top top",
-            end: `+=${panels.length * 100}%`,
-            pin: true,
-            scrub: 1,
-            onUpdate: (self) => {
-                const activeIndex = Math.round(self.progress * (panels.length - 1));
-                updateActiveNav(activeIndex);
+    function updateActiveNav(activeIndex) {
+        navLinks.forEach(link => {
+            const linkIndex = parseInt(link.getAttribute('data-index'));
+            if (linkIndex === activeIndex) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
             }
-        }
-    });
+        });
+    }
 
-    tl.to('.pulse-ring', { scale: 0.1, rotate: 180, opacity: 0, transformOrigin: "200px 200px", duration: 0.8 }, 0)
-      .to('.energy-core', { scale: 0.1, opacity: 0, transformOrigin: "200px 200px", duration: 0.7 }, 0)
-      .to('.lightning-bolt', { scale: 0, rotate: -90, opacity: 0, transformOrigin: "200px 200px", duration: 0.6 }, 0)
-      .to('.dust-p', { cx: 200, cy: 200, r: 0, opacity: 0, duration: 0.8, stagger: 0.004 }, 0);
+    if (panels.length > 0) {
+        panels.forEach((panel, i) => {
+            gsap.set(panel, {
+                z: -i * 2000,
+                opacity: i === 0 ? 1 : 0
+            });
+        });
 
-    panels.forEach((panel, i) => {
-        if (i > 0) {
-            tl.to(panels[i - 1], { opacity: 0, z: 1000, duration: 1 }, `step-${i}`)
-              .to(panel, { opacity: 1, z: 0, duration: 1 }, `step-${i}`);
-        }
-    });
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".scroll-container",
+                start: "top top",
+                end: `+=${panels.length * 100}%`,
+                pin: true,
+                scrub: 1,
+                onUpdate: (self) => {
+                    const activeIndex = Math.round(self.progress * (panels.length - 1));
+                    updateActiveNav(activeIndex);
+                }
+            }
+        });
+
+        tl.to('.pulse-ring', { scale: 0.1, rotate: 180, opacity: 0, transformOrigin: "200px 200px", duration: 0.8 }, 0)
+          .to('.energy-core', { scale: 0.1, opacity: 0, transformOrigin: "200px 200px", duration: 0.7 }, 0)
+          .to('.lightning-bolt', { scale: 0, rotate: -90, opacity: 0, transformOrigin: "200px 200px", duration: 0.6 }, 0)
+          .to('.dust-p', { cx: 200, cy: 200, r: 0, opacity: 0, duration: 0.8, stagger: 0.004 }, 0);
+
+        panels.forEach((panel, i) => {
+            if (i > 0) {
+                tl.to(panels[i - 1], { opacity: 0, z: 1000, duration: 1 }, `step-${i}`)
+                  .to(panel, { opacity: 1, z: 0, duration: 1 }, `step-${i}`);
+            }
+        });
+    }
 }
 
 // ۵. پرش به پنل با کلیک منو
 function jumpToPanel(index) {
+    const panels = document.querySelectorAll('.panel');
     const totalPanels = panels.length;
     if (totalPanels === 0) return;
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
@@ -171,7 +182,7 @@ function toggleAnswer(element) {
     if (nodeItem) nodeItem.classList.toggle('active');
 }
 
-// ==================== پایگاه داده توضیحات بازی‌ها ====================
+// ==================== پایگاه داده اطلاعات بازی‌ها ====================
 const gamesData = {
     warzone: {
         title: "Call of Duty: Warzone 2.0",
@@ -298,7 +309,7 @@ if (gameModal) {
     });
 }
 
-// ==================== مدیریت مودال ورود / ثبت‌نام ====================
+// ==================== مدیریت مودال ورود و انتقال به داشبورد ====================
 const authModal = document.getElementById('authModal');
 const openAuthBtn = document.getElementById('openAuthBtn');
 const closeAuthBtn = document.getElementById('closeAuthBtn');
@@ -332,6 +343,20 @@ if (openAuthBtn && authModal) {
             loginForm.classList.remove('active');
         });
     }
+}
+
+if (loginForm) {
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        window.location.href = 'dashboard.html';
+    });
+}
+
+if (registerForm) {
+    registerForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        window.location.href = 'dashboard.html';
+    });
 }
 
 // ==================== سنجش زنده سختی رمز عبور ====================

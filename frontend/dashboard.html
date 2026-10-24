@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming DNS | پنل کاربری</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="dashboard-body">
+
+    <!-- لایه‌های پس‌زمینه فضایی و ستاره‌ها -->
+    <div class="space-nebula"></div>
+    <div id="dynamic-stars"></div>
+
+    <!-- هدر پنل کاربری -->
+    <header class="site-header" style="pointer-events: auto;">
+        <div class="header-right">
+            <div class="fixed-logo" onclick="window.location.href='index.html'" style="cursor: pointer;" title="بازگشت به صفحه اصلی">
+                <svg viewBox="0 0 50 50" width="42" height="42" fill="none">
+                    <circle cx="25" cy="25" r="20" stroke="#00e5ff" stroke-width="3"/>
+                    <path d="M25 10L17 23H24L21 38L33 21H26L25 10Z" fill="#00e5ff"/>
+                </svg>
+            </div>
+            <span class="logo-title">GAMING DNS / پنل کاربری</span>
+        </div>
+
+        <div class="header-left" style="display: flex; gap: 12px; align-items: center;">
+            <button class="theme-toggle-btn" id="themeToggle" title="تغییر تم">🌙</button>
+            <button class="auth-btn" onclick="window.location.href='index.html'" style="border-color: #ff4757; color: #ff4757;">خروج از حساب</button>
+        </div>
+    </header>
+
+    <!-- کانتینر اصلی داشبورد -->
+    <main class="dashboard-main">
+        <div class="dashboard-container">
+            
+            <!-- خوش‌آمدگویی و اطلاعات کلی -->
+            <div class="dashboard-welcome-card">
+                <div class="welcome-text">
+                    <h2>سلام، مهدی عزیز 👋</h2>
+                    <p>به پنل مدیریت سرویس گیمینگ خود خوش آمدید. از این بخش می‌توانید اشتراک و وضعیت DNS خود را مدیریت کنید.</p>
+                </div>
+                <div class="header-action-btns" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button class="buy-btn" style="padding: 10px 20px; font-size: 0.9rem;" onclick="alert('انتقال به صفحه تمدید اشتراک...')">⚡ تمدید اشتراک</button>
+                    <button class="dl-btn" style="padding: 10px 20px; font-size: 0.9rem; background: linear-gradient(90deg, #00ffaa, #0088cc);" onclick="alert('نسخه رایگان تست برای شما فعال شد!')">🎁 دریافت نسخه رایگان</button>
+                </div>
+            </div>
+
+            <!-- گرید اطلاعات داشبورد -->
+            <div class="dashboard-grid">
+                
+                <!-- کارت ۱: نمودار حجم، مصرفی و تاریخ انقضا -->
+                <div class="card dash-card">
+                    <h3>📊 وضعیت مصرف و اشتراک</h3>
+                    
+                    <div class="circular-chart-box">
+                        <div class="circular-progress">
+                            <div class="inner-circle">
+                                <span class="prog-val">۷۵٪</span>
+                                <span class="prog-sub">مصرف شده</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subscription-details">
+                        <div class="detail-row">
+                            <span>حجم کل پلن:</span>
+                            <strong>100 گیگابایت</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>حجم مصرفی:</span>
+                            <strong style="color: #ff4757;">75 گیگابایت</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>حجم باقیمانده:</span>
+                            <strong style="color: #00ffaa;">25 گیگابایت</strong>
+                        </div>
+                        <div class="detail-row" style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 8px; margin-top: 5px;">
+                            <span>📅 تاریخ انقضا:</span>
+                            <strong style="color: #00e5ff;">۱۴۰۵ / ۰۹ / ۱۰</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- کارت ۲: وضعیت DNS اختصاصی و مدیریت آی‌پی -->
+                <div class="card dash-card">
+                    <h3>🌐 سرور و DNS اختصاصی شما</h3>
+                    
+                    <div class="dns-status-box inactive-dns" id="dnsBox">
+                        <div class="dns-alert-icon">⚠️</div>
+                        <div class="dns-alert-text">
+                            <strong>وضعیت DNS: غیرفعال</strong>
+                            <p>شما هنوز پلن اشتراکی نخریده‌اید. پس از خرید اشتراک، سرورهای DNS اختصاصی شما در این بخش بارگذاری خواهند شد.</p>
+                        </div>
+                    </div>
+
+                    <div class="ip-info-box" style="margin-top: 15px;">
+                        <div class="ip-row">
+                            <span>💻 آی‌پی سیستم شما:</span>
+                            <strong id="systemIp" style="font-family: monospace; color: #00e5ff; font-size: 1.05rem;">185.105.23.45</strong>
+                        </div>
+                    </div>
+
+                    <button class="buy-btn" style="width: 100%; margin-top: 15px;" onclick="alert('آی‌پی شما با موفقیت همگام‌سازی شد!')">
+                        ثبت و همگام‌سازی آی‌پی سیستم
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- لود فایل جاوااسکریپت -->
+    <script src="main.js"></script>
+</body>
+</html>

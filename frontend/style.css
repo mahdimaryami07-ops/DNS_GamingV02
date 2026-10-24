@@ -985,3 +985,182 @@ body.light-theme .input-group input {
 .auth-submit-btn:hover {
     box-shadow: 0 0 20px rgba(0, 229, 255, 0.5);
 }
+/* استایل‌های اختصاصی پنل کاربری */
+.dashboard-main {
+    padding-top: 120px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-bottom: 40px;
+    z-index: 2;
+    position: relative;
+}
+
+.dashboard-container {
+    width: 100%;
+    max-width: 1000px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.dashboard-welcome-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(0, 229, 255, 0.2);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    padding: 25px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.dash-card {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.dash-card h3 {
+    font-size: 1.2rem;
+    color: #fff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 10px;
+}
+
+body.light-theme .dash-card h3 {
+    color: #0f172a;
+}
+
+/* نمودار دایره‌ای پیشرفته با CSS */
+.circular-chart-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.circular-progress {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: conic-gradient(#00e5ff 0deg, #3b82f6 270deg, rgba(255,255,255,0.1) 270deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.2);
+}
+
+.inner-circle {
+    width: 112px;
+    height: 112px;
+    background: #090d16;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+body.light-theme .inner-circle {
+    background: #f8fafc;
+}
+
+.prog-val {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #00e5ff;
+}
+
+.prog-sub {
+    font-size: 0.75rem;
+    color: #64748b;
+}
+
+.subscription-details {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 12px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #94a3b8;
+}
+
+.ip-info-box {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ip-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #cbd5e1;
+}
+
+.ip-desc {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    line-height: 1.6;
+}
+/* استایل‌های بخش DNS اختصاصی در پنل */
+.dns-status-box {
+    background: rgba(255, 71, 87, 0.08);
+    border: 1px dashed rgba(255, 71, 87, 0.4);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-align: right;
+}
+
+.dns-alert-icon {
+    font-size: 1.8rem;
+}
+
+.dns-alert-text strong {
+    color: #ff4757;
+    font-size: 0.95rem;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.dns-alert-text p {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* کلاس کمکی برای زمانی که کاربر پلن بخرد و DNS فعال شود */
+.dns-status-box.active-dns {
+    background: rgba(0, 255, 170, 0.08);
+    border: 1px solid rgba(0, 255, 170, 0.4);
+}
+.dns-status-box.active-dns strong {
+    color: #00ffaa;
+}
