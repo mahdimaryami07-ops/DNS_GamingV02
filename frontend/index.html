@@ -6,6 +6,7 @@
     <title>Gaming DNS | نسل جدید سرورهای گیمینگ</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
@@ -271,7 +272,7 @@
                 </div>
             </section>
 
-            <!-- Panel 5: سوالات متداول درختی (کاملاً تعاملی) -->
+            <!-- Panel 5: سوالات متداول درختی -->
             <section class="panel faq-section">
                 <div class="content faq-content">
                     <h2>سوالات متداول</h2>
@@ -432,38 +433,91 @@
         </div>
     </div>
 
-    <!-- مودال ورود / ثبت‌نام -->
+    <!-- مودال ورود / ثبت‌نام پیشرفته و سایبرپانک -->
     <div class="auth-modal-overlay" id="authModal">
         <div class="auth-modal">
             <button class="close-modal" id="closeAuthBtn">&times;</button>
             
-            <div class="auth-tabs" style="display: flex; gap: 10px; margin-bottom: 20px;">
-                <button class="filter-btn active" id="loginTab" style="flex: 1; padding: 10px;">ورود</button>
-                <button class="filter-btn" id="registerTab" style="flex: 1; padding: 10px;">ثبت‌نام</button>
+            <div class="auth-tabs">
+                <button class="filter-btn active" id="loginTab">ورود به شبکه</button>
+                <button class="filter-btn" id="registerTab">ایجاد حساب جدید</button>
             </div>
 
-            <form class="auth-form active" id="loginForm" style="display: flex; flex-direction: column; gap: 15px;">
-                <div class="input-group" style="display: flex; flex-direction: column; gap: 5px;">
-                    <label style="font-size: 0.85rem;">ایمیل یا شماره همراه</label>
-                    <input type="text" placeholder="example@gmail.com" style="padding: 10px; border-radius: 8px; background: rgba(0,0,0,0.3); border: 1px solid rgba(0,255,102,0.3); color: #fff;" required>
+            <div id="authAlert" class="auth-alert hidden"></div>
+
+            <!-- فرم ورود -->
+            <form class="auth-form active" id="loginForm">
+                <div class="input-group">
+                    <label><i class="fa-solid fa-user"></i> نام کاربری یا ایمیل</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="loginUsername" placeholder="CyberGamer_2077" required>
+                    </div>
                 </div>
-                <div class="input-group" style="display: flex; flex-direction: column; gap: 5px;">
-                    <label style="font-size: 0.85rem;">رمز عبور</label>
-                    <input type="password" placeholder="••••••••" style="padding: 10px; border-radius: 8px; background: rgba(0,0,0,0.3); border: 1px solid rgba(0,255,102,0.3); color: #fff;" required>
+                <div class="input-group">
+                    <label><i class="fa-solid fa-lock"></i> رمز عبور</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="loginPassword" placeholder="••••••••" required>
+                        <button type="button" class="toggle-pwd-btn" onclick="togglePasswordVisibility('loginPassword', this)">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
                 </div>
-                <button type="submit" class="auth-submit-btn" style="width: 100%; margin-top: 10px;">ورود به حساب</button>
+                <button type="submit" class="auth-submit-btn">ورود به پنل گیمینگ</button>
             </form>
 
-            <form class="auth-form" id="registerForm" style="display: none; flex-direction: column; gap: 15px;">
-                <div class="input-group" style="display: flex; flex-direction: column; gap: 5px;">
-                    <label style="font-size: 0.85rem;">ایمیل</label>
-                    <input type="email" placeholder="example@gmail.com" style="padding: 10px; border-radius: 8px; background: rgba(0,0,0,0.3); border: 1px solid rgba(0,255,102,0.3); color: #fff;" required>
+            <!-- فرم ثبت‌نام پیشرفته -->
+            <form class="auth-form" id="registerForm" style="display: none;">
+                <div class="input-group">
+                    <label><i class="fa-solid fa-user"></i> نام کاربری</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="regUsername" placeholder="CyberGamer_2077" required>
+                    </div>
                 </div>
-                <div class="input-group" style="display: flex; flex-direction: column; gap: 5px;">
-                    <label style="font-size: 0.85rem;">رمز عبور</label>
-                    <input type="password" id="regPassword" placeholder="رمز عبور" style="padding: 10px; border-radius: 8px; background: rgba(0,0,0,0.3); border: 1px solid rgba(0,255,102,0.3); color: #fff;" required>
+                <div class="input-group">
+                    <label><i class="fa-solid fa-envelope"></i> ایمیل معتبر</label>
+                    <div class="input-wrapper">
+                        <input type="email" id="regEmail" placeholder="gamer@net.cyber" required>
+                    </div>
                 </div>
-                <button type="submit" class="auth-submit-btn" style="width: 100%; margin-top: 10px;">ثبت‌نام</button>
+                <div class="input-group">
+                    <label><i class="fa-solid fa-key"></i> رمز عبور امن</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="regPassword" placeholder="••••••••" oninput="validatePasswordStrength()" required>
+                        <button type="button" class="toggle-pwd-btn" onclick="togglePasswordVisibility('regPassword', this)">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+
+                    <!-- درجه سختی رمز عبور -->
+                    <div class="strength-meter-box">
+                        <div class="strength-bar-bg">
+                            <div id="strengthBar" class="strength-bar-fill"></div>
+                        </div>
+                        <span id="strengthLabel" class="strength-label">قدرت رمز عبور: نامشخص</span>
+                    </div>
+
+                    <!-- چک‌لیست الزامات رمز عبور -->
+                    <ul class="pwd-conditions">
+                        <li id="condLength" class="invalid"><i class="fa-solid fa-xmark"></i> حداقل ۸ کاراکتر</li>
+                        <li id="condUpper" class="invalid"><i class="fa-solid fa-xmark"></i> حداقل یک حرف بزرگ (A-Z)</li>
+                        <li id="condLower" class="invalid"><i class="fa-solid fa-xmark"></i> حداقل یک حرف کوچک (a-z)</li>
+                        <li id="condNumber" class="invalid"><i class="fa-solid fa-xmark"></i> حداقل یک عدد (0-9)</li>
+                        <li id="condSymbol" class="invalid"><i class="fa-solid fa-xmark"></i> حداقل یک نماد خاص (!@#$...)</li>
+                    </ul>
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fa-solid fa-shield-halved"></i> تکرار رمز عبور</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="regConfirmPassword" placeholder="••••••••" oninput="checkPasswordMatch()" required>
+                        <button type="button" class="toggle-pwd-btn" onclick="togglePasswordVisibility('regConfirmPassword', this)">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                    <span id="matchLabel" class="match-label invalid-match"><i class="fa-solid fa-xmark"></i> تکرار رمز عبور مطابقت ندارد</span>
+                </div>
+
+                <button type="submit" id="regSubmitBtn" class="auth-submit-btn" disabled>ثبت‌نام و ورود به حساب</button>
             </form>
         </div>
     </div>

@@ -316,7 +316,9 @@ if (gameModal) {
     });
 }
 
-// مدیریت مودال ورود و انتقال به داشبورد
+// ==========================================================
+// ۹. مدیریت پیشرفته مودال احراز هویت، امنیت رمز و سنجش سختی
+// ==========================================================
 const authModal = document.getElementById('authModal');
 const openAuthBtn = document.getElementById('openAuthBtn');
 const closeAuthBtn = document.getElementById('closeAuthBtn');
@@ -352,6 +354,125 @@ if (openAuthBtn && authModal) {
     }
 }
 
+// دکمه نمایش / مخفی کردن رمز عبور (آیکون چشم)
+function togglePasswordVisibility(inputId, btn) {
+    const input = document.getElementById(inputId);
+    if (!input) return;
+    const icon = btn.querySelector('i');
+
+    if (input.type === 'password') {
+        input.type = 'text';
+        if (icon) icon.className = 'fa-solid fa-eye-slash';
+    } else {
+        input.type = 'password';
+        if (icon) icon.className = 'fa-solid fa-eye';
+    }
+}
+
+// بررسی زنده درجه سختی رمز عبور و چک‌لیست شرایط
+function validatePasswordStrength() {
+    const regPasswordInput = document.getElementById('regPassword') || document.getElementById('reg-password');
+    if (!regPasswordInput) return;
+    
+    const pwd = regPasswordInput.value;
+    const bar = document.getElementById('strengthBar') || document.getElementById('strength-bar');
+    const label = document.getElementById('strengthLabel') || document.getElementById('strength-label');
+
+    const conds = {
+        Length: pwd.length >= 8,
+        Upper: /[A-Z]/.test(pwd),
+        Lower: /[a-z]/.test(pwd),
+        Number: /[0-9]/.test(pwd),
+        Symbol: /[@$!%*?&._#]/.test(pwd)
+    };
+
+    let score = 0;
+
+    for (let key in conds) {
+        // پشتیبانی از هر دو نام‌گذاری احتمالی در المان‌ها
+        const item = document.getElementById(`cond${key}`) || document.getElementById(`req-${key.toLowerCase()}`);
+        if (item) {
+            const icon = item.querySelector('i');
+            if (conds[key]) {
+                item.className = 'valid';
+                if (icon) icon.className = 'fa-solid fa-check';
+                score++;
+            } else {
+                item.className = 'invalid';
+                if (icon) icon.className = 'fa-solid fa-xmark';
+            }
+        }
+    }
+
+    if (bar) {
+        const percentage = (score / 5) * 100;
+        bar.style.width = `${percentage}%`;
+
+        if (pwd.length === 0) {
+            bar.style.width = '0%';
+            bar.style.backgroundColor = 'transparent';
+            if (label) {
+                label.innerText = 'قدرت رمز عبور: نامشخص';
+                label.style.color = '#94a3b8';
+            }
+        } else if (score <= 2) {
+            bar.style.backgroundColor = '#ff3344';
+            if (label) {
+                label.innerText = 'قدرت رمز عبور: ضعیف ⚠️';
+                label.style.color = '#ff3344';
+            }
+        } else if (score <= 4) {
+            bar.style.backgroundColor = '#ffb700';
+            if (label) {
+                label.innerText = 'قدرت رمز عبور: متوسط ⚡';
+                label.style.color = '#ffb700';
+            }
+        } else {
+            bar.style.backgroundColor = '#00ff66';
+            if (label) {
+                label.innerText = 'قدرت رمز عبور: عالی و امن 🚀';
+                label.style.color = '#00ff66';
+            }
+        }
+    }
+
+    checkPasswordMatch();
+}
+
+// بررسی تطابق تکرار رمز عبور و فعال‌سازی دکمه ثبت‌نام
+function checkPasswordMatch() {
+    const regPasswordInput = document.getElementById('regPassword') || document.getElementById('reg-password');
+    const confirmInput = document.getElementById('regConfirmPassword') || document.getElementById('reg-confirm-password');
+    const matchLabel = document.getElementById('matchLabel') || document.getElementById('match-label');
+    const submitBtn = document.getElementById('regSubmitBtn') || document.getElementById('reg-submit-btn');
+
+    if (!regPasswordInput || !confirmInput) return;
+
+    const pwd = regPasswordInput.value;
+    const confirmPwd = confirmInput.value;
+
+    const isValid = pwd.length >= 8 &&
+                    /[A-Z]/.test(pwd) &&
+                    /[a-z]/.test(pwd) &&
+                    /[0-9]/.test(pwd) &&
+                    /[@$!%*?&._#]/.test(pwd);
+
+    if (matchLabel && confirmPwd.length > 0) {
+        if (pwd === confirmPwd) {
+            matchLabel.className = 'match-label match-text valid-match';
+            matchLabel.innerHTML = '<i class="fa-solid fa-check"></i> تکرار رمز عبور مطابقت دارد';
+        } else {
+            matchLabel.className = 'match-label match-text invalid-match';
+            matchLabel.innerHTML = '<i class="fa-solid fa-xmark"></i> تکرار رمز عبور مطابقت ندارد';
+        }
+    }
+
+    if (submitBtn) {
+        submitBtn.disabled = !(isValid && pwd === confirmPwd && pwd !== '');
+    }
+}
+
+// مدیریت ارسال فرم‌ها
 if (loginForm) {
     loginForm.addEventListener('submit', (e) => {
         e.preventDefault();
